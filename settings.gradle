@@ -1,0 +1,5 @@
+rootProject.name = 'caferanking'
+
+include 'cagong-admin-api'
+include 'cagong-common'
+
