@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Cafe Latte"
+  },
+  {
+    "id": 34,
+    "name": "Green Black Tea"
+  },
+  {
+    "id": 33,
+    "destroy": true
+  }
+]
