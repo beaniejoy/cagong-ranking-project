@@ -38,4 +38,9 @@ public class Cafe {
     public void setCafeMenus(List<CafeMenu> cafeMenus) {
         this.cafeMenus = new ArrayList<>(cafeMenus);
     }
+
+    public void updateInformation(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
 }

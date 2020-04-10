@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 
 class CafeServiceTests {
 
@@ -42,6 +43,7 @@ class CafeServiceTests {
 
         given(cafeRepository.findAll()).willReturn(cafes);
         given(cafeRepository.findById(1L)).willReturn(Optional.ofNullable(cafe));
+        given(cafeRepository.existsById(1L)).willReturn(true);
     }
 
     @Test
@@ -76,13 +78,39 @@ class CafeServiceTests {
             return Cafe.builder()
                     .id(1L)
                     .name(cafe.getName())
+                    .address(cafe.getAddress())
                     .build();
         });
 
-        Cafe cafe = Cafe.builder().name("Hollys").build();
+        Cafe cafe = Cafe.builder()
+                .name("Hollys")
+                .address("Seoul")
+                .build();
 
         Cafe saved = cafeService.addCafe(cafe);
 
         assertEquals(saved.getName(), "Hollys");
     }
+
+    @Test
+    public void updateCafe() {
+        Cafe cafe = cafeService.updateCafe(1L, "Starbucks_1", "Seoul Gwang");
+
+        assertEquals(cafe.getName(), "Starbucks_1");
+        assertEquals(cafe.getAddress(), "Seoul Gwang");
+    }
+
+    @Test
+    public void deleteCafeWithExisted() {
+        cafeService.deleteCafe(1L);
+
+        verify(cafeRepository).deleteById(1L);
+    }
+
+    @Test
+    public void deleteCafeWithNotExisted() {
+        assertThrows(CafeNotFoundException.class,
+                () -> cafeService.deleteCafe(404L));
+    }
+
 }

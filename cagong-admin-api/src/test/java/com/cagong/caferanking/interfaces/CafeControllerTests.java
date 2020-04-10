@@ -19,8 +19,7 @@ import static org.hamcrest.core.StringContains.containsString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
@@ -115,6 +114,34 @@ class CafeControllerTests {
                 .content("{\"name\":,\"address\":\"Seoul\"}")
         )
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void updateWithCorrectData() throws Exception {
+        mvc.perform(patch("/cafes/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"name\":\"Starbucks_1\",\"address\":\"Seoul GwangJinGu\"}")
+        )
+                .andExpect(status().isOk());
+
+        verify(cafeService).updateCafe(1L, "Starbucks_1", "Seoul GwangJinGu");
+    }
+
+    @Test
+    public void updateWithIncorrectData() throws Exception {
+        mvc.perform(patch("/cafes/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"name\":,\"address\":\"GwangJinGu\"}")
+        )
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void removeWithExisted() throws Exception {
+        mvc.perform(delete("/cafes/1"))
+                .andExpect(status().isOk());
+
+        verify(cafeService).deleteCafe(1L);
     }
 
 }

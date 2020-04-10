@@ -17,4 +17,6 @@ class CafeTests {
         assertEquals(cafe.getName(), "Starbucks");
         assertEquals(cafe.getAddress(), "Seoul");
     }
+
+
 }

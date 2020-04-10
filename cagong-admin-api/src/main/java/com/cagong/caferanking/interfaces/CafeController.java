@@ -41,4 +41,20 @@ public class CafeController {
         return ResponseEntity.created(new URI(url)).body("{}");
     }
 
+    @PatchMapping("/cafes/{cafeId}")
+    public String update(@PathVariable("cafeId") Long cafeId,
+                         @Valid @RequestBody Cafe resource) {
+        String name = resource.getName();
+        String address = resource.getAddress();
+        cafeService.updateCafe(cafeId, name, address);
+
+        return "{}";
+    }
+
+    @DeleteMapping("/cafes/{cafeId}")
+    public String remove(@PathVariable("cafeId") Long cafeId) {
+        cafeService.deleteCafe(cafeId);
+        return "{}";
+    }
+
 }
