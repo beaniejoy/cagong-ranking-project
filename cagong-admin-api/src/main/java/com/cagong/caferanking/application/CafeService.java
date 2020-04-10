@@ -17,7 +17,12 @@ public class CafeService {
         return cafeRepositoy.findAll();
     }
 
+    public Cafe getCafe(Long cafeId) {
+        return cafeRepositoy.findById(cafeId)
+                .orElseThrow(() -> new CafeNotFoundException(cafeId));
+    }
+
     public Cafe addCafe(Cafe cafe) {
-        return null;
+        return cafeRepositoy.save(cafe);
     }
 }

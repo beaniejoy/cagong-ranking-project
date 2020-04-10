@@ -9,8 +9,12 @@ class CafeTests {
     @Test
     public void creation() {
 
-        Cafe cafe = Cafe.builder().name("Starbucks").build();
+        Cafe cafe = Cafe.builder()
+                .name("Starbucks")
+                .address("Seoul")
+                .build();
 
         assertEquals(cafe.getName(), "Starbucks");
+        assertEquals(cafe.getAddress(), "Seoul");
     }
 }
