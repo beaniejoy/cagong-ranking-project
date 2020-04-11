@@ -2,7 +2,7 @@ package com.cagong.caferanking.interfaces;
 
 import com.cagong.caferanking.application.CafeService;
 import com.cagong.caferanking.domain.Cafe;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +12,9 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 public class CafeController {
 
-    @Autowired
     private CafeService cafeService;
 
     @GetMapping("/cafes")
