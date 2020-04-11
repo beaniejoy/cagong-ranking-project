@@ -15,7 +15,7 @@ import static org.mockito.BDDMockito.given;
 
 class ScoresServiceTests {
 
-    private ScoreSetService scoresService;
+    private ScoreSetService scoreSetService;
 
     @Mock
     private ScoreSetRepository scoresRepository;
@@ -23,12 +23,12 @@ class ScoresServiceTests {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        scoresService = new ScoreSetService(scoresRepository);
+        scoreSetService = new ScoreSetService(scoresRepository);
     }
 
     @Test
     public void getScoresByCafeIdWithExisted() {
-        ScoreSet mockScores = ScoreSet.builder()
+        ScoreSet mockScoreSet = ScoreSet.builder()
                 .cafeId(1L)
                 .light(4.5)
                 .mood(3.5)
@@ -36,17 +36,17 @@ class ScoresServiceTests {
                 .taste(1.5)
                 .build();
 
-        given(scoresRepository.findByCafeId(1L)).willReturn(Optional.ofNullable(mockScores));
+        given(scoresRepository.findByCafeId(1L)).willReturn(Optional.ofNullable(mockScoreSet));
 
-        ScoreSet scores = scoresService.getScoreSetByCafeId(1L);
+        ScoreSet scoreSet = scoreSetService.getScoreSetByCafeId(1L);
 
-        assertEquals(scores.getCafeId(), 1);
-        assertEquals(scores.getLight(), 4.5);
+        assertEquals(scoreSet.getCafeId(), 1);
+        assertEquals(scoreSet.getLight(), 4.5);
     }
 
     @Test
     public void getScoresByCafeIdWithNotExisted() {
         assertThrows(ScoreSetNotFoundException.class,
-                () -> scoresService.getScoreSetByCafeId(404L));
+                () -> scoreSetService.getScoreSetByCafeId(404L));
     }
 }

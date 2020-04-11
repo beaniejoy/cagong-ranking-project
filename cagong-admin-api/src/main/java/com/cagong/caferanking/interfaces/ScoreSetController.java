@@ -13,6 +13,8 @@ public class ScoreSetController {
 
     private ScoreSetService scoresService;
 
+    // TODO: scoreset List 전부에 대한 GET도 해야하는지?
+    
     @GetMapping("/cafes/{cafeId}/scoreset")
     public ScoreSet getScoreSet(@PathVariable("cafeId") Long cafeId) {
         return scoresService.getScoreSetByCafeId(cafeId);
