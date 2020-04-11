@@ -35,8 +35,20 @@ public class Cafe {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<CafeMenu> cafeMenus;
 
+    @Transient
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<Review> reviews;
+
+    @Transient
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private ScoreSet scoreSet;
+
     public void setCafeMenus(List<CafeMenu> cafeMenus) {
         this.cafeMenus = new ArrayList<>(cafeMenus);
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = new ArrayList<>(reviews);
     }
 
     public void updateInformation(String name, String address) {
