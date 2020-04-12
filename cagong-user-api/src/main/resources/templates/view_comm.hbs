@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="<%=contextPath %>/css/write.css">
+<link rel="stylesheet" href="<%=contextPath %>/css/rank.css">
+</head>
+<body>
+<form style="margin-bottom: 50px;">
+		<%
+			if (list.size() != 0) {
+		%>
+		<%
+			for (ShopRatingDto ratingDto : list) {
+		%>
+		<div class="form-group">
+			<label for="exampleFormControlTextarea1"><%=ratingDto.getId()%></label>
+			<textarea class="form-control" rows="3" readonly="readonly"> <%=ratingDto.getComm()%></textarea>
+		</div>
+		<%
+			}
+		%>
+		<%
+			} else {
+		%>
+		<div>
+			<h4>리뷰가 존재하지 않습니다.</h4>
+		</div>
+		<%
+			}
+		%>
+	</form>
+
+	<nav aria-label="Page navigation example">
+		<ul class="pagination justify-content-center">
+			<%
+				if (currentBlock == 1) {
+			%>
+			<li class="page-item disabled"><a class="page-link" href="#"
+				tabindex="-1" aria-disabled="true">Previous </a></li>
+			<%
+				} else {
+			%>
+			<li class="page-item"><a class="page-link"
+				href="view_comm.jsp?shop=<%=shopName %>&page=<%=startPage - 1%>">Previous</a></li>
+			<%
+				}
+			%>
+			<%
+				for (int i = startPage; i <= endPage; i++) {
+			%>
+			<li class="page-item <%if (cPage == i) {%>active<%}%>"><a
+				class="page-link" href="view_comm.jsp?shop=<%=shopName %>&page=<%=i%>"><%=i%></a></li>
+			<%
+				}
+			%>
+			<%
+				if (currentBlock == totalBlock) {
+			%>
+			<li class="page-item disabled"><a class="page-link" href="#"
+				tabindex="-1" aria-disabled="true">Next</a></li>
+			<%
+				} else {
+			%>
+			<li class="page-item"><a class="page-link"
+				href="view_comm.jsp?shop=<%=shopName %>&page=<%=endPage + 1%>">Next</a></li>
+			<%
+				}
+			%>
+		</ul>
+	</nav>
+</body>
+<script>
+
+
+
+</script>
+</html>
