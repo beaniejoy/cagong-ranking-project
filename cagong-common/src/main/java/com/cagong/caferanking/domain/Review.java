@@ -23,6 +23,7 @@ public class Review {
 
     private Long cafeId;
 
+    // TODO: token으로 받아서 사용할 것
     private String userName;
 
     private Double mood;
