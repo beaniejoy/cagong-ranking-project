@@ -30,7 +30,8 @@ public class CafeService {
 
         List<Review> reviews = reviewRepository.findAllByCafeId(cafeId);
         cafe.setReviews(reviews);
-        
+
+        // user-api에서는 review의 score평가가 아무것도 없을 때 그냥 null을 반환하도록
         ScoreSet scoreSet = scoreSetRepository.findByCafeId(cafeId).orElse(null);
         cafe.setScoreSet(scoreSet);
 
