@@ -2,64 +2,79 @@
 <html lang="en">
 
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
 
-<link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<%=contextPath %>/css/write.css">
-<link rel="stylesheet" href="<%=contextPath %>/css/rank.css">
-<link rel="stylesheet" href="<%=contextPath %>/css/animate.css">
-<!-- 합쳐지고 최소화된 최신 CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/write.css">
+    <link rel="stylesheet" href="/css/rank.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <!-- 합쳐지고 최소화된 최신 CSS -->
 
-<title>카공도르</title>
+    <title>카공도르</title>
 </head>
 
 <body>
 {{#with cafe}}
-<h2 style="margin-bottom: 50px;">{{id}}</h2>
-<h2 style="margin-bottom: 50px;">{{name}}</h2>
-<div class="container">
-	<div style="margin-bottom: 50px">
-		<ul class="list-group">
-		<li class="list-group-item"><span
-        				style="width: 100px; display: inline-block; margin-right: 20px"><b>address</b></span>{{address}}</li>
-	    {{#each cafeMenus}}
-			<li class="list-group-item"><span
-				style="width: 100px; display: inline-block; margin-right: 20px"><b>Menu</b></span>{{name}}</li>
-		{{/each}}
-		</ul>
-	</div>
-	<div style="margin-bottom: 50px">
-		<ul class="list-group">
-			<li class="list-group-item"><span
-				style="width: 100px; display: inline-block; margin-right: 20px"><b>Mood</b></span></li>
-			<li class="list-group-item"><span
-				style="width: 100px; display: inline-block; margin-right: 20px"><b>Light</b></span></li>
-			<li class="list-group-item"><span
-				style="width: 100px; display: inline-block; margin-right: 20px"><b>Price</b></span></li>
-			<li class="list-group-item"><span
-				style="width: 100px; display: inline-block; margin-right: 20px"><b>Taste</b></span></li>
-		</ul>
-	</div>
+    <div class="jumbotron" id="jumbo"
+         style="background-image:url('<%=infoDto.getThumb()%>');">
+        <h2 style="margin-bottom: 50px;">{{name}}</h2>
+        <p class="lead"></p>
+        <p></p>
+    <div class="container">
+        <div style="margin-bottom: 50px">
+            <ul class="list-group">
+                <li class="list-group-item"><span
+                        style="width: 100px; display: inline-block; margin-right: 20px"><b>Address</b></span>{{address}}
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h4>Menu</h4>
+            <ul class="list-group">
+                {{#each cafeMenus}}
+                    <li class="list-group-item"><span
+                            style="width: 100px; display: inline-block; margin-right: 20px"><b></b></span>{{name}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div style="margin-bottom: 50px">
+            {{#with scoreSet}}
+                <ul class="list-group">
+                    <li class="list-group-item"><span
+                            style="width: 100px; display: inline-block; margin-right: 20px"><b>Mood</b></span>{{mood}}
+                    </li>
+                    <li class="list-group-item"><span
+                            style="width: 100px; display: inline-block; margin-right: 20px"><b>Light</b></span>{{light}}
+                    </li>
+                    <li class="list-group-item"><span
+                            style="width: 100px; display: inline-block; margin-right: 20px"><b>Price</b></span>{{price}}
+                    </li>
+                    <li class="list-group-item"><span
+                            style="width: 100px; display: inline-block; margin-right: 20px"><b>Taste</b></span>{{taste}}
+                    </li>
+                </ul>
+            {{/with}}
+        </div>
 {{/with}}
-	<div class="text-right">
-		<a href="<%=contextPath%>/main.jsp" type="button"
-			class="btn btn-outline-secondary">메인</a>
+    <div class="text-right">
+        <a href="<%=contextPath%>/main.jsp" type="button"
+           class="btn btn-outline-secondary">메인</a>
 
-		<a href="writeProcess.jsp?shop=<%=infoDto.getSname()%>"
-			class="btn btn-outline-info">평가하기</a>
+        <a href="writeProcess.jsp?shop=<%=infoDto.getSname()%>"
+           class="btn btn-outline-info">평가하기</a>
 
-	</div>
+    </div>
 
-	<iframe src="/view_comm.jsp>"
-	width="100%" height="500px" frameborder="0"></iframe>
+    <iframe src="/view_comm.hbs>"
+            width="100%" height="500px" frameborder="0"></iframe>
 
 </div>

@@ -24,13 +24,7 @@ public class CafeController {
     }
 
     @GetMapping("/cafes/{cafeId}")
-    public Cafe detail(@PathVariable("cafeId") Long cafeId) {
-        return cafeService.getCafe(cafeId);
-    }
-
-    @GetMapping("/")
-    public String view(Model model,
-                       @RequestParam("cafe") Long cafeId) {
+    public String detail(Model model, @PathVariable("cafeId") Long cafeId) {
         model.addAttribute("cafe",cafeService.getCafe(cafeId));
         return "view";
     }
