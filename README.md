@@ -8,13 +8,11 @@ project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이�
 
 ## 🔖 About Tools & Library
 
-- [Spring Initializr](https://start.spring.io/)
-- Gradle
-- Spring Boot 2.2.6
-- Java 8
-- MySQL
-- IntelliJ IDEA
-- handlebars(hbs) / Front
+- Spring Boot 2.2.6 (Java 8)
+- Build: Gradle
+- DB: MySQL
+- Front : thymeleaf
+- IDE: IntelliJ IDEA
 
 ## 🔖 REST API (작업 중)
 
