@@ -9,5 +9,5 @@ public interface CafeRepository extends CrudRepository<Cafe, Long> {
     List<Cafe> findAll();
 
     @Override
-    Optional<Cafe> findById(Long cafeId);
+    Optional<Cafe> findById(Long id);
 }

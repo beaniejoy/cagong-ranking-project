@@ -31,6 +31,8 @@ public class Cafe {
     @NotEmpty
     private String address;
 
+    private String imgSrc;
+
     @Transient
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<CafeMenu> cafeMenus;

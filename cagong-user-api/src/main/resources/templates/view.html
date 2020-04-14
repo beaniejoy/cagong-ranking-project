@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/write.css">
+    <link rel="stylesheet" href="/css/rank.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+
+    <title>카공도르</title>
+</head>
+
+<body>
+<div class="jumbotron" id="jumbo"
+     style="background-image:url('<%=infoDto.getThumb()%>');">
+    <h2 style="margin-bottom: 50px;" th:text="${cafe.name}"></h2>
+    <p class="lead"></p>
+    <p></p>
+    <div class="container">
+        <div style="margin-bottom: 50px">
+            <ul class="list-group">
+                <li class="list-group-item" th:text="${cafe.address}"><span
+                        style="width: 100px; display: inline-block; margin-right: 20px"><b>Address</b></span>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h4>Menu</h4>
+            <ul class="list-group">
+                <li class="list-group-item" th:each="cafeMenu : ${cafe.cafeMenus}">
+                    <b><span style="width: 100px; display: inline-block; margin-right: 20px"
+                             th:text="${cafeMenu.name}"></span></b>
+                    <span style="width: 100px; display: inline-block; margin-right: 20px"
+                          th:text="${cafeMenu.price}"></span>
+                </li>
+            </ul>
+        </div>
+        <div style="margin-bottom: 50px">
+            <ul class="list-group" th:with="scoreSet=${cafe.scoreSet}">
+                <li class="list-group-item">
+                    <span style="width: 100px; display: inline-block; margin-right: 20px"><b>Mood</b></span>
+                    <span th:text="${scoreSet.mood}"></span>
+                </li>
+                <li class="list-group-item">
+                    <span style="width: 100px; display: inline-block; margin-right: 20px"><b>Light</b></span>
+                    <span th:text="${scoreSet.light}"></span>
+                </li>
+                <li class="list-group-item">
+                    <span style="width: 100px; display: inline-block; margin-right: 20px"><b>Price</b></span>
+                    <span th:text="${scoreSet.price}"></span>
+                </li>
+                <li class="list-group-item">
+                    <span style="width: 100px; display: inline-block; margin-right: 20px"><b>Taste</b></span>
+                    <span th:text="${scoreSet.taste}"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="text-right">
+            <a href="<%=contextPath%>/main.jsp" type="button"
+               class="btn btn-outline-secondary">메인</a>
+
+            <a href="writeProcess.jsp?shop=<%=infoDto.getSname()%>"
+               class="btn btn-outline-info">평가하기</a>
+
+        </div>
+
+        <iframe src="/view_comm.hbs>"
+                width="100%" height="500px" frameborder="0"></iframe>
+
+    </div>
+</div>
+</body>
+</html>

@@ -29,6 +29,8 @@ public class CafeMenu {
     @NotNull
     private String name;
 
+    private int price;
+
     @Transient
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private boolean destroy;
