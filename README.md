@@ -12,6 +12,7 @@ project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이�
 - Gradle
 - Spring Boot 2.2.6
 - Java 8
+- MySQL
 - IntelliJ IDEA
 - handlebars(hbs) / Front
 
