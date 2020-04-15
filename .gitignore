@@ -1,6 +1,7 @@
 #README.md
 .gradle
 build/
+/cagong-user-api/src/main/resources/static/img/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**

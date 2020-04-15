@@ -19,8 +19,9 @@ public class CafeController {
     private CafeService cafeService;
 
     @GetMapping("/cafes")
-    public List<Cafe> list() {
-        return cafeService.getCafes();
+    public String list(Model model) {
+        model.addAttribute("cafes", cafeService.getCafes());
+        return "search";
     }
 
     @GetMapping("/cafes/{cafeId}")

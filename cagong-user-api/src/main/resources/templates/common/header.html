@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<header th:fragment="header-frag">
+    <!-- navbar start-->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #6F4E37;">
+        <a class="navbar-brand" href="*">카공도르</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="*">신청게시판</a>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="*">회원가입 </a></li>
+                <li class="nav-item"><a class="nav-link" href="*">로그인</a></li>
+
+                <!--                form 이 부분 경고 왜 나오는지 알아보자-->
+                <form class="form-inline my-2 my-lg-0" method="post" action="*">
+                    <input class="form-control mr-sm-2" type="text"
+                           placeholder="카페명을 입력해주세요" id="search" name="search"
+                           aria-label="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">카페찾기</button>
+                </form>
+            </ul>
+        </div>
+    </nav>
+    <!-- navbar end-->
+</header>
