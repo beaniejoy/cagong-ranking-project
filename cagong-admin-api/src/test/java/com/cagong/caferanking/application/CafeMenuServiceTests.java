@@ -1,7 +1,7 @@
 package com.cagong.caferanking.application;
 
 import com.cagong.caferanking.domain.CafeMenu;
-import com.cagong.caferanking.domain.CafeMenuRepository;
+import com.cagong.caferanking.repository.CafeMenuRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

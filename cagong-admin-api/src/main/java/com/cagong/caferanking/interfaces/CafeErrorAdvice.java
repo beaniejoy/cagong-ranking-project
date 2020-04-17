@@ -1,6 +1,6 @@
 package com.cagong.caferanking.interfaces;
 
-import com.cagong.caferanking.domain.CafeNotFoundException;
+import com.cagong.caferanking.error.CafeNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

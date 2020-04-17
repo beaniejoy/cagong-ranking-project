@@ -1,7 +1,7 @@
 package com.cagong.caferanking.application;
 
 import com.cagong.caferanking.domain.CafeMenu;
-import com.cagong.caferanking.domain.CafeMenuRepository;
+import com.cagong.caferanking.repository.CafeMenuRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

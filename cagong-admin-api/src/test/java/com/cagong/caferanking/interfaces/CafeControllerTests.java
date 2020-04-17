@@ -1,6 +1,6 @@
 package com.cagong.caferanking.interfaces;
 
-import com.cagong.caferanking.domain.CafeNotFoundException;
+import com.cagong.caferanking.error.CafeNotFoundException;
 import com.cagong.caferanking.application.CafeService;
 import com.cagong.caferanking.domain.Cafe;
 import org.junit.jupiter.api.Test;

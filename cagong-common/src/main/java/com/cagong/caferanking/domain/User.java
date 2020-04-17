@@ -12,34 +12,26 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 @Entity
+@Data
 @Builder
 @Accessors(chain = true)
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Review {
-
+public class User {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long cafeId;
+    private String account;
 
-    // TODO: token으로 받아서 사용할 것
-    private String userName;
+    private String email;
 
-    private Double mood;
-    private Double light;
-    private Double price;
-    private Double taste;
-
-    @NotEmpty
-    private String comment;
+    private String phoneNumber;
 
     @CreatedDate
     private LocalDateTime createdAt;

@@ -1,4 +1,4 @@
-package com.cagong.caferanking.domain;
+package com.cagong.caferanking.error;
 
 public class CafeNotFoundException extends RuntimeException {
 
