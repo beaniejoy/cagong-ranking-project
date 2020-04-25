@@ -25,7 +25,7 @@
         <div style="margin-bottom: 50px">
             <h4>Menu</h4>
             <ul class="list-group">
-                <li class="list-group-item" th:each="cafeMenu : *{cafeMenus}">
+                <li class="list-group-item" th:each="cafeMenu : *{cafeMenuList}">
                     <b><span style="width: 100px; display: inline-block; margin-right: 20px"
                              th:text="${cafeMenu.name}"></span></b>
                     <span th:text="${cafeMenu.price}"></span>

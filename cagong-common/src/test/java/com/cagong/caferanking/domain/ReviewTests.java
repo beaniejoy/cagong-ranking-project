@@ -10,7 +10,7 @@ class ReviewTests {
     public void creation() {
 
         Review review = Review.builder()
-                .cafeId(1L)
+//                .cafeId(1L)
                 .mood(3.5)
                 .light(4.5)
                 .price(3.5)

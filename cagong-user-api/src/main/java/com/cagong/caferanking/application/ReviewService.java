@@ -19,7 +19,7 @@ public class ReviewService {
                             String comment) {
 
         Review review = Review.builder()
-                .cafeId(cafeId)
+//                .cafeId(cafeId)
                 .userName(userName)
                 .mood(mood).light(light).price(price).taste(taste)
                 .comment(comment)

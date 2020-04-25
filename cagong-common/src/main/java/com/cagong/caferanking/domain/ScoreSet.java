@@ -1,15 +1,10 @@
 package com.cagong.caferanking.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -17,13 +12,12 @@ import javax.persistence.Id;
 @Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"cafe"})
 public class ScoreSet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long cafeId;
 
     private Double mood;
 
@@ -33,4 +27,7 @@ public class ScoreSet {
 
     private Double taste;
 
+    @JsonIgnore
+    @OneToOne
+    private Cafe cafe;
 }

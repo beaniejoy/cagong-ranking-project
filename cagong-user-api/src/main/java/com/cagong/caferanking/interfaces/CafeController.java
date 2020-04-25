@@ -1,32 +1,34 @@
 package com.cagong.caferanking.interfaces;
 
 import com.cagong.caferanking.application.CafeService;
-import com.cagong.caferanking.domain.Cafe;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @AllArgsConstructor
+@RequestMapping("/cafes")
 public class CafeController {
 
     private CafeService cafeService;
 
-    @GetMapping("/cafes")
-    public String list(Model model) {
-        model.addAttribute("cafes", cafeService.getCafes());
+    @GetMapping("/search")
+    public String list(Model model,
+                       @PageableDefault(sort = "id", direction = Sort.Direction.ASC, size = 4) Pageable pageable) {
+        model.addAttribute("cafes", cafeService.getCafes(pageable).get("cafes"));
+        model.addAttribute("page", cafeService.getCafes(pageable).get("page"));
         return "search";
     }
 
-    @GetMapping("/cafes/{cafeId}")
+    @GetMapping("/{cafeId}")
     public String detail(Model model, @PathVariable("cafeId") Long cafeId) {
-        model.addAttribute("cafe",cafeService.getCafe(cafeId));
+        model.addAttribute("cafe", cafeService.getCafe(cafeId));
         return "view";
     }
 

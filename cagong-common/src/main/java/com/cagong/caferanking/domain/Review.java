@@ -1,9 +1,8 @@
 package com.cagong.caferanking.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -22,13 +21,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+@ToString(exclude = {"cafe", "user"})
 public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long cafeId;
 
     // TODO: token으로 받아서 사용할 것
     private String userName;
@@ -52,4 +50,14 @@ public class Review {
 
     @LastModifiedBy
     private String updatedBy;
+
+    // Review : Cafe = N : 1
+    @JsonIgnore
+    @ManyToOne
+    private Cafe cafe;
+
+    // Review : User = N : 1
+    @JsonIgnore
+    @ManyToOne
+    private User user;
 }

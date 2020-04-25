@@ -1,10 +1,8 @@
 package com.cagong.caferanking.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -23,13 +21,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+@ToString(exclude = {"cafe"})
 public class CafeMenu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long cafeId;
 
     @NotNull
     private String name;
@@ -47,6 +44,11 @@ public class CafeMenu {
 
     @LastModifiedBy
     private String updatedBy;
+
+    // CafeMenu : Cafe = N : 1
+    @JsonIgnore
+    @ManyToOne
+    private Cafe cafe;
 
     @Transient
     @JsonInclude(JsonInclude.Include.NON_NULL)

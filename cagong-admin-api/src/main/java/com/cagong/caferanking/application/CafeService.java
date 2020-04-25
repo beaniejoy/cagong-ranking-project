@@ -33,9 +33,9 @@ public class CafeService {
         Cafe cafe = cafeRepositoy.findById(cafeId)
                 .orElseThrow(() -> new CafeNotFoundException(cafeId));
 
-        cafe.updateInformation(name, address);
+        cafe.setName(name).setAddress(address);
 
-        return cafe;
+        return cafeRepositoy.save(cafe);
     }
 
     public void deleteCafe(Long cafeId) {

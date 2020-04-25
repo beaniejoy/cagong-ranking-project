@@ -1,10 +1,6 @@
 package com.cagong.caferanking.domain;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -16,7 +12,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,6 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+@ToString(exclude = {"cafeMenuList", "reviewList"})
 public class Cafe {
 
     @Id
@@ -35,7 +31,6 @@ public class Cafe {
     @NotEmpty
     private String name;
 
-    @NotEmpty
     private String address;
 
     private String imgUrl;
@@ -58,28 +53,15 @@ public class Cafe {
     @LastModifiedBy
     private String updatedBy;
 
-    @Transient
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private List<CafeMenu> cafeMenus;
+    // Cafe : CafeMenu = 1 : N
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cafe")
+    private List<CafeMenu> cafeMenuList;
 
-    @Transient
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private List<Review> reviews;
+    // Cafe : Review = 1 : N
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cafe")
+    private List<Review> reviewList;
 
-    @Transient
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    // Cafe : ScoreSet = 1 : 1
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "cafe")
     private ScoreSet scoreSet;
-
-    public void setCafeMenus(List<CafeMenu> cafeMenus) {
-        this.cafeMenus = new ArrayList<>(cafeMenus);
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = new ArrayList<>(reviews);
-    }
-
-    public void updateInformation(String name, String address) {
-        this.name = name;
-        this.address = address;
-    }
 }

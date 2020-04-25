@@ -25,7 +25,8 @@ public class CafeMenuService {
                 cafeMenuRepository.deleteById(cafeMenu.getId());
                 continue;
             }
-            cafeMenu.setCafeId(cafeId);
+            // TODO: CafeMenu Entity update 작업 필요
+//            cafeMenu.setCafeId(cafeId);
             cafeMenuRepository.save(cafeMenu);
         }
     }

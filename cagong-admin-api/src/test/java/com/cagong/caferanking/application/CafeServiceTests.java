@@ -95,6 +95,13 @@ class CafeServiceTests {
 
     @Test
     public void updateCafe() {
+        Cafe mockCafe = Cafe.builder()
+                .name("Starbucks_1")
+                .address("Seoul Gwang")
+                .build();
+
+        given(cafeRepository.save(any())).willReturn(mockCafe);
+
         Cafe cafe = cafeService.updateCafe(1L, "Starbucks_1", "Seoul Gwang");
 
         assertEquals(cafe.getName(), "Starbucks_1");

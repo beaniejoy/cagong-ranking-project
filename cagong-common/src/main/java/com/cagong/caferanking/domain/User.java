@@ -13,6 +13,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,7 +23,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class User {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,4 +45,9 @@ public class User {
 
     @LastModifiedBy
     private String updatedBy;
+
+    // User : Review = 1 : N
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Review> reviewList;
+
 }

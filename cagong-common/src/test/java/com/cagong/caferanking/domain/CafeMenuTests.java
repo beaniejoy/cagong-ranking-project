@@ -9,11 +9,11 @@ class CafeMenuTests {
     @Test
     public void creation() {
         CafeMenu cafeMenu = CafeMenu.builder()
-                .cafeId(1L)
+//                .cafeId(1L)
                 .name("Americano")
                 .build();
 
-        assertEquals(cafeMenu.getCafeId(), 1L);
+//        assertEquals(cafeMenu.getCafeId(), 1L);
         assertEquals(cafeMenu.getName(), "Americano");
         assertFalse(cafeMenu.isDestroy());
     }

@@ -25,62 +25,43 @@
                     <div class="col mb-4" th:each="cafe : ${cafes}">
                         <div class="card" th:object="${cafe}">
                             <a th:href="@{/cafes/{cafeId}(cafeId=${cafe.id})}">
-                                <img th:src="@{'/img/cafe'+${cafe.id}+'.jpg'}" class="card-img-top" alt="alternative">
+                                <img th:src="*{imgUrl}" class="card-img-top" alt="alternative">
                             </a>
                             <div class="card-body">
                                 <h5 class="card-title" th:text="*{name}"></h5>
                                 <p class="card-text"></p>
                             </div>
                             <div class="card-body">
-
-                                <a href="*" class="card-link">수정하기</a>
-
-                                <a href="*" class="card-link">평가하기</a>
-
+                                <a href="#" class="card-link">수정하기</a>
+                                <a href="#" class="card-link">평가하기</a>
                             </div>
                         </div>
                     </div>
 
                 </div>
 
-                <!--                <nav aria-label="Page navigation example">-->
-                <!--                    <ul class="pagination justify-content-center">-->
-                <!--                        <%-->
-                <!--                        if (currentBlock == 1) {-->
-                <!--                        %>-->
-                <!--                        <li class="page-item disabled"><a class="page-link" href="#"-->
-                <!--                                                          tabindex="-1" aria-disabled="true">Previous</a></li>-->
-                <!--                        <%-->
-                <!--                        } else {-->
-                <!--                        %>-->
-                <!--                        <li class="page_item"><a class="page-link"-->
-                <!--                                                 href="search.jsp?page=<%=startPage - 1%>">Previous</a></li>-->
-                <!--                        <%-->
-                <!--                        }-->
-                <!--                        %>-->
-                <!--                        <%-->
-                <!--                        for (int i = startPage; i <= endPage; i++) {-->
-                <!--                        %>-->
-                <!--                        <li class="page-item <%if (cPage == i) {%>active<%}%>"><a-->
-                <!--                                class="page-link" href="search.jsp?page=<%=i%>"><%=i%></a></li>-->
-                <!--                        <%-->
-                <!--                        }-->
-                <!--                        %>-->
-                <!--                        <%-->
-                <!--                        if (currentBlock == totalBlock) {-->
-                <!--                        %>-->
-                <!--                        <li class="page-item disabled"><a class="page-link" href="#"-->
-                <!--                                                          tabindex="-1" aria-disabled="true">Next</a></li>-->
-                <!--                        <%-->
-                <!--                        } else {-->
-                <!--                        %>-->
-                <!--                        <li class="page-item"><a class="page-link"-->
-                <!--                                                 href="search.jsp?page=<%=endPage + 1%>">Next</a></li>-->
-                <!--                        <%-->
-                <!--                        }-->
-                <!--                        %>-->
-                <!--                    </ul>-->
-                <!--                </nav>-->
+                <nav aria-label="Page navigation example" th:object="${page}">
+                    <ul class="pagination justify-content-center"
+                        th:with="startNum = *{(currentPage / maxSize) * maxSize},
+                                 countNum = ${startNum} + *{maxSize} >= *{totalPages} ? *{totalPages} - ${startNum + 1} : *{maxSize}">
+                        <li class="page-item" th:classappend="*{currentPage} == 0? disabled">
+                            <a class="page-link" th:href="@{/cafes/search(page=*{currentPage - 1})}"
+                               tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+
+                        <li class="page-item" th:each="num : ${#numbers.sequence(0, countNum)}">
+                            <a class="page-link"
+                               th:href="@{/cafes/search(page=${num + startNum})}"
+                               th:text="${num + startNum + 1}">
+                            </a>
+                        </li>
+
+                        <li class="page-item" th:classappend="*{currentPage + 1 >= totalPages}? disabled">
+                            <a class="page-link" th:href="@{/cafes/search(page=*{currentPage + 1})}"
+                               tabindex="-1" aria-disabled="true">Next</a>
+                        </li>
+                    </ul>
+                </nav>
 
 
             </div>
