@@ -1,6 +1,7 @@
 package com.cagong.caferanking.application;
 
-import com.cagong.caferanking.domain.Review;
+import com.cagong.caferanking.domain.entity.Review;
+import com.cagong.caferanking.domain.network.response.ReviewApiResponse;
 import com.cagong.caferanking.repository.ReviewRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,19 @@ public class ReviewService {
 
         // TODO: 여기서 ScoreSet에 변경된 총 평점이 들어가도록 작업 필요
         return reviewRepository.save(review);
+    }
+
+    public ReviewApiResponse response(Review review){
+
+        return ReviewApiResponse.builder()
+                .id(review.getId())
+                .userName(review.getUserName())
+                .mood(review.getMood())
+                .light(review.getLight())
+                .price(review.getPrice())
+                .taste(review.getTaste())
+                .comment(review.getComment())
+                .userId(review.getUser().getId())
+                .build();
     }
 }

@@ -1,6 +1,6 @@
 package com.cagong.caferanking.application;
 
-import com.cagong.caferanking.domain.Cafe;
+import com.cagong.caferanking.domain.entity.Cafe;
 import com.cagong.caferanking.error.CafeNotFoundException;
 import com.cagong.caferanking.repository.CafeRepository;
 import lombok.AllArgsConstructor;
@@ -26,6 +26,7 @@ public class CafeService {
     }
 
     public Cafe addCafe(Cafe cafe) {
+        // TODO: scoreSet은 자동으로 table create 설정하기
         return cafeRepositoy.save(cafe);
     }
 

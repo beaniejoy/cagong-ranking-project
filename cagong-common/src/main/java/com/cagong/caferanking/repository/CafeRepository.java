@@ -1,6 +1,6 @@
 package com.cagong.caferanking.repository;
 
-import com.cagong.caferanking.domain.Cafe;
+import com.cagong.caferanking.domain.entity.Cafe;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;

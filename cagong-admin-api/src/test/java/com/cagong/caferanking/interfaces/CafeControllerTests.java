@@ -2,7 +2,7 @@ package com.cagong.caferanking.interfaces;
 
 import com.cagong.caferanking.error.CafeNotFoundException;
 import com.cagong.caferanking.application.CafeService;
-import com.cagong.caferanking.domain.Cafe;
+import com.cagong.caferanking.domain.entity.Cafe;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

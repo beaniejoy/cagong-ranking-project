@@ -1,6 +1,6 @@
 package com.cagong.caferanking.application;
 
-import com.cagong.caferanking.domain.Cafe;
+import com.cagong.caferanking.domain.entity.Cafe;
 import com.cagong.caferanking.error.CafeNotFoundException;
 import com.cagong.caferanking.repository.CafeRepository;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,6 +1,7 @@
 package com.cagong.caferanking.application;
 
-import com.cagong.caferanking.domain.ScoreSet;
+import com.cagong.caferanking.domain.entity.ScoreSet;
+import com.cagong.caferanking.error.ScoreSetNotFoundException;
 import com.cagong.caferanking.repository.ScoreSetRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ class ScoresServiceTests {
     @Test
     public void getScoresByCafeIdWithExisted() {
         ScoreSet mockScoreSet = ScoreSet.builder()
-                .cafeId(1L)
+//                .cafeId(1L)
                 .light(4.5)
                 .mood(3.5)
                 .price(2.5)
@@ -40,7 +41,6 @@ class ScoresServiceTests {
 
         ScoreSet scoreSet = scoreSetService.getScoreSetByCafeId(1L);
 
-        assertEquals(scoreSet.getCafeId(), 1);
         assertEquals(scoreSet.getLight(), 4.5);
     }
 

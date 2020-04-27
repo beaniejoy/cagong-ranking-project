@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="common/layout">
+      layout:decorate="~{common/layout}">
 
 <section layout:fragment="content">
     <!-- breadcrumb start -->
@@ -37,9 +37,10 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
 
+                <!-- Pagination-->
+                <!-- TODO: page 범위를 범어난 값들에 대해 예외 handling해야 한다.-->
                 <nav aria-label="Page navigation example" th:object="${page}">
                     <ul class="pagination justify-content-center"
                         th:with="startNum = *{(currentPage / maxSize) * maxSize},
@@ -62,7 +63,7 @@
                         </li>
                     </ul>
                 </nav>
-
+                <!-- Pagination end-->
 
             </div>
         </div>

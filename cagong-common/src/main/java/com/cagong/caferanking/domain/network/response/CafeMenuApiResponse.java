@@ -1,6 +1,5 @@
-package com.cagong.caferanking.network.response;
+package com.cagong.caferanking.domain.network.response;
 
-import com.cagong.caferanking.network.Pagination;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,11 +11,13 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Builder
 @Accessors(chain = true)
-public class CafeApiResponse {
+public class CafeMenuApiResponse {
 
     private Long id;
 
     private String name;
 
-    private String imgUrl;
+    private Integer price;
+
+    private Long cafeId;
 }

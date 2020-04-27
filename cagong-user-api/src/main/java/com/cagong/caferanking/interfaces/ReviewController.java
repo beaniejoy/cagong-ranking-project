@@ -1,7 +1,7 @@
 package com.cagong.caferanking.interfaces;
 
 import com.cagong.caferanking.application.ReviewService;
-import com.cagong.caferanking.domain.Review;
+import com.cagong.caferanking.domain.entity.Review;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
 
 @RestController
 @AllArgsConstructor

@@ -1,6 +1,6 @@
 package com.cagong.caferanking.application;
 
-import com.cagong.caferanking.domain.ScoreSet;
+import com.cagong.caferanking.domain.entity.ScoreSet;
 import com.cagong.caferanking.repository.ScoreSetRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,6 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -31,7 +30,7 @@ class ScoreSetServiceTests {
     public void getScoreSetByCafeIdWithExisted() {
 
         ScoreSet mockScoreSet = ScoreSet.builder()
-                .cafeId(1L)
+//                .cafeId(1L)
                 .light(4.5)
                 .mood(3.5)
                 .price(2.5)
@@ -43,7 +42,6 @@ class ScoreSetServiceTests {
         ScoreSet scoreSet = scoreSetService.getScoreSetByCafeId(1L);
         verify(scoreSetRepository).findByCafeId(eq(1L));
 
-        assertEquals(scoreSet.getCafeId(), 1L);
     }
 
     // TODO: admin-api에서 ScoreSet에 대해 어떻게 접근할 지 정해야 함

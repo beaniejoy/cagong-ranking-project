@@ -1,8 +1,9 @@
-package com.cagong.caferanking.domain;
+package com.cagong.caferanking.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -11,33 +12,29 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
+@Data
 @Builder
 @Accessors(chain = true)
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@ToString(exclude = {"cafe", "user"})
-public class Review {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // TODO: token으로 받아서 사용할 것
-    private String userName;
+    private String account;
 
-    private Double mood;
-    private Double light;
-    private Double price;
-    private Double taste;
+    private String password;
 
-    @NotEmpty
-    private String comment;
+    private String email;
+
+    private String phoneNumber;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -51,13 +48,8 @@ public class Review {
     @LastModifiedBy
     private String updatedBy;
 
-    // Review : Cafe = N : 1
-    @JsonIgnore
-    @ManyToOne
-    private Cafe cafe;
+    // User : Review = 1 : N
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Review> reviewList;
 
-    // Review : User = N : 1
-    @JsonIgnore
-    @ManyToOne
-    private User user;
 }

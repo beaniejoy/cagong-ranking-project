@@ -1,7 +1,7 @@
 package com.cagong.caferanking.interfaces;
 
 import com.cagong.caferanking.application.CafeService;
-import com.cagong.caferanking.domain.Cafe;
+import com.cagong.caferanking.domain.entity.Cafe;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 public class CafeController {
-
+    // TODO: request, response객체를 이용해 CRUD만들기
     private CafeService cafeService;
 
     @GetMapping("/cafes")

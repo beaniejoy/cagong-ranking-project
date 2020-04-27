@@ -1,6 +1,7 @@
 package com.cagong.caferanking.application;
 
 import com.cagong.caferanking.domain.entity.CafeMenu;
+import com.cagong.caferanking.domain.network.response.CafeMenuApiResponse;
 import com.cagong.caferanking.repository.CafeMenuRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,15 +20,12 @@ public class CafeMenuService {
         return cafeMenuRepository.findAllByCafeId(cafeId);
     }
 
-    public void bulkUpdate(Long cafeId, List<CafeMenu> cafeMenus) {
-        for (CafeMenu cafeMenu : cafeMenus) {
-            if(cafeMenu.isDestroy()){
-                cafeMenuRepository.deleteById(cafeMenu.getId());
-                continue;
-            }
-            // TODO: CafeMenu Entity update 작업 필요
-//            cafeMenu.setCafeId(cafeId);
-            cafeMenuRepository.save(cafeMenu);
-        }
+    public CafeMenuApiResponse response(CafeMenu cafeMenu){
+
+        return CafeMenuApiResponse.builder()
+                .id(cafeMenu.getId())
+                .name(cafeMenu.getName())
+                .price(cafeMenu.getPrice())
+                .build();
     }
 }

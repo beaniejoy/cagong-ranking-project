@@ -1,7 +1,6 @@
-package com.cagong.caferanking.domain;
+package com.cagong.caferanking.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedBy;
@@ -11,27 +10,33 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
 @Builder
 @Accessors(chain = true)
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@ToString(exclude = {"cafe"})
-public class CafeMenu {
+@ToString(exclude = {"cafe", "user"})
+public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    private String name;
+    // TODO: token으로 받아서 사용할 것
+    private String userName;
 
-    private int price;
+    private Double mood;
+    private Double light;
+    private Double price;
+    private Double taste;
+
+    @NotEmpty
+    private String comment;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -45,12 +50,13 @@ public class CafeMenu {
     @LastModifiedBy
     private String updatedBy;
 
-    // CafeMenu : Cafe = N : 1
+    // Review : Cafe = N : 1
     @JsonIgnore
     @ManyToOne
     private Cafe cafe;
 
-    @Transient
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private boolean destroy;
+    // Review : User = N : 1
+    @JsonIgnore
+    @ManyToOne
+    private User user;
 }

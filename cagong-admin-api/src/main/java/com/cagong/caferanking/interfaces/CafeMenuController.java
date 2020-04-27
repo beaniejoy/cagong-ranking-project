@@ -1,7 +1,7 @@
 package com.cagong.caferanking.interfaces;
 
 import com.cagong.caferanking.application.CafeMenuService;
-import com.cagong.caferanking.domain.CafeMenu;
+import com.cagong.caferanking.domain.entity.CafeMenu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

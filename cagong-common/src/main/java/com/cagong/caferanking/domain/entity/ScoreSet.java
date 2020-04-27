@@ -1,4 +1,4 @@
-package com.cagong.caferanking.domain;
+package com.cagong.caferanking.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

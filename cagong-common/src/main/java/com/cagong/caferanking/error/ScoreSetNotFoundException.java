@@ -1,4 +1,4 @@
-package com.cagong.caferanking.application;
+package com.cagong.caferanking.error;
 
 public class ScoreSetNotFoundException extends RuntimeException {
     public ScoreSetNotFoundException(Long cafeId) {

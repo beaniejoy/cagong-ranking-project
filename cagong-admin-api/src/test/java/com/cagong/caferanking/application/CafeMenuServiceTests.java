@@ -1,6 +1,6 @@
 package com.cagong.caferanking.application;
 
-import com.cagong.caferanking.domain.CafeMenu;
+import com.cagong.caferanking.domain.entity.CafeMenu;
 import com.cagong.caferanking.repository.CafeMenuRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ class CafeMenuServiceTests {
     public void getCafeMenus() {
         List<CafeMenu> mockCafeMenus = new ArrayList<>();
         mockCafeMenus.add(CafeMenu.builder()
-                .cafeId(1L)
+//                .cafeId(1L)
                 .name("americano")
                 .build());
 

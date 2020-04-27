@@ -1,6 +1,9 @@
 package com.cagong.caferanking.application;
 
-import com.cagong.caferanking.domain.*;
+import com.cagong.caferanking.domain.entity.Cafe;
+import com.cagong.caferanking.domain.entity.CafeMenu;
+import com.cagong.caferanking.domain.entity.Review;
+import com.cagong.caferanking.domain.entity.ScoreSet;
 import com.cagong.caferanking.error.CafeNotFoundException;
 import com.cagong.caferanking.repository.CafeMenuRepository;
 import com.cagong.caferanking.repository.CafeRepository;
@@ -28,26 +31,11 @@ class CafeServiceTests {
     @Mock
     private CafeRepository cafeRepository;
 
-    @Mock
-    private CafeMenuRepository cafeMenuRepository;
-
-    @Mock
-    private ReviewRepository reviewRepository;
-
-    @Mock
-    private ScoreSetRepository scoreSetRepository;
-
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         mockCafeRepository();
-        mockAllRepository();
-
-        cafeService = new CafeService(
-                cafeRepository,
-                cafeMenuRepository,
-                reviewRepository,
-                scoreSetRepository);
+//        mockAllRepository();
     }
 
     private void mockCafeRepository() {
@@ -64,35 +52,35 @@ class CafeServiceTests {
         given(cafeRepository.existsById(1L)).willReturn(true);
     }
 
-    private void mockAllRepository() {
-        List<CafeMenu> cafeMenus = new ArrayList<>();
-        cafeMenus.add(CafeMenu.builder()
-//                .cafeId(1L)
-                .name("Americano")
-                .build());
-        given(cafeMenuRepository.findAllByCafeId(1L)).willReturn(cafeMenus);
-
-        List<Review> reviews = new ArrayList<>();
-        reviews.add(Review.builder()
-//                .cafeId(1L)
-                .userName("Joy")
-                .mood(3.5)
-                .light(4.5)
-                .price(3.5)
-                .taste(1.5)
-                .comment("It's so Good!")
-                .build());
-        given(reviewRepository.findAllByCafeId(1L)).willReturn(reviews);
-
-        ScoreSet scoreSet = ScoreSet.builder()
-//                .cafeId(1L)
-                .light(4.5)
-                .mood(3.5)
-                .price(2.5)
-                .taste(1.5)
-                .build();
-        given(scoreSetRepository.findByCafeId(1L)).willReturn(Optional.ofNullable(scoreSet));
-    }
+//    private void mockAllRepository() {
+//        List<CafeMenu> cafeMenus = new ArrayList<>();
+//        cafeMenus.add(CafeMenu.builder()
+////                .cafeId(1L)
+//                .name("Americano")
+//                .build());
+//        given(cafeMenuRepository.findAllByCafeId(1L)).willReturn(cafeMenus);
+//
+//        List<Review> reviews = new ArrayList<>();
+//        reviews.add(Review.builder()
+////                .cafeId(1L)
+//                .userName("Joy")
+//                .mood(3.5)
+//                .light(4.5)
+//                .price(3.5)
+//                .taste(1.5)
+//                .comment("It's so Good!")
+//                .build());
+//        given(reviewRepository.findAllByCafeId(1L)).willReturn(reviews);
+//
+//        ScoreSet scoreSet = ScoreSet.builder()
+////                .cafeId(1L)
+//                .light(4.5)
+//                .mood(3.5)
+//                .price(2.5)
+//                .taste(1.5)
+//                .build();
+//        given(scoreSetRepository.findByCafeId(1L)).willReturn(Optional.ofNullable(scoreSet));
+//    }
 
 //    @Test
 //    public void getCafes() {

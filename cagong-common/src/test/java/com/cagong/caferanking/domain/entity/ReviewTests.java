@@ -1,5 +1,6 @@
-package com.cagong.caferanking.domain;
+package com.cagong.caferanking.domain.entity;
 
+import com.cagong.caferanking.domain.entity.Review;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

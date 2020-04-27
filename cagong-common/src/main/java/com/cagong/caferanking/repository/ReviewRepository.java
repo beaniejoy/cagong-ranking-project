@@ -1,6 +1,6 @@
 package com.cagong.caferanking.repository;
 
-import com.cagong.caferanking.domain.Review;
+import com.cagong.caferanking.domain.entity.Review;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

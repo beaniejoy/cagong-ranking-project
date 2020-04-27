@@ -1,4 +1,4 @@
-package com.cagong.caferanking.network;
+package com.cagong.caferanking.page;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,8 +14,12 @@ import lombok.experimental.Accessors;
 public class Pagination {
 
     private final Integer maxSize = 5;
+
     private Integer totalPages;
+
     private Long totalElements;
+
     private Integer currentPage;
+
     private Integer currentElements;
 }

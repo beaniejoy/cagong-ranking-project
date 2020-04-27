@@ -1,7 +1,7 @@
 package com.cagong.caferanking.interfaces;
 
 import com.cagong.caferanking.application.ReviewService;
-import com.cagong.caferanking.domain.Review;
+import com.cagong.caferanking.domain.entity.Review;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ class ReviewControllerTests {
     public void list() throws Exception {
         List<Review> reviews = new ArrayList<>();
         reviews.add(Review.builder()
-                .cafeId(1L)
+//                .cafeId(1L)
                 .mood(3.5)
                 .light(4.5)
                 .price(3.5)

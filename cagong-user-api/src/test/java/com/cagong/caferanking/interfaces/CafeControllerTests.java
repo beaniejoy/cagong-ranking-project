@@ -1,7 +1,7 @@
 package com.cagong.caferanking.interfaces;
 
 import com.cagong.caferanking.application.CafeService;
-import com.cagong.caferanking.domain.*;
+import com.cagong.caferanking.domain.entity.Cafe;
 import com.cagong.caferanking.error.CafeNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,7 +41,7 @@ class CafeControllerTests {
                 .address("Busan")
                 .build());
 
-        given(cafeService.getCafes()).willReturn(cafes);
+//        given(cafeService.getCafes()).willReturn(cafes);
 //
 //        mvc.perform(get("/cafes"))
 //                .andExpect(status().isOk())

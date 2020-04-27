@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="common/layout">
+      layout:decorate="~{common/layout}">
 
 <section layout:fragment="content" th:object="${cafe}">
     <div class="jumbotron" id="jumbo"

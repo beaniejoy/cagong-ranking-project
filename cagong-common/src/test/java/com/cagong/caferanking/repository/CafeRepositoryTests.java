@@ -1,7 +1,7 @@
 package com.cagong.caferanking.repository;
 
 import com.cagong.caferanking.CaferankingCommonApplicationTests;
-import com.cagong.caferanking.domain.Cafe;
+import com.cagong.caferanking.domain.entity.Cafe;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +18,7 @@ public class CafeRepositoryTests extends CaferankingCommonApplicationTests {
     @Test
     @Transactional
     public void read() {
-        Optional<Cafe> cafe = cafeRepository.findById(1L);
+        Optional<Cafe> cafe = cafeRepository.findById(2L);
 
         cafe.ifPresent(selectCafe -> {
             selectCafe.getCafeMenuList().stream().forEach(cafeMenu -> {
@@ -29,9 +29,9 @@ public class CafeRepositoryTests extends CaferankingCommonApplicationTests {
                 System.out.println("리뷰 작성자 : " + review.getUser().getAccount());
                 System.out.println("리뷰 내용 : " + review.getComment());
             });
-            System.out.println("카페 총 평가 : " + selectCafe.getScoreSet().getLight());
+//            System.out.println("카페 총 평가 : " + selectCafe.getScoreSet().getLight());
+                assertNull(selectCafe.getScoreSet());
         });
-
         assertNotNull(cafe);
     }
 }

@@ -1,5 +1,7 @@
-package com.cagong.caferanking.domain;
+package com.cagong.caferanking.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedBy;
@@ -9,10 +11,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.List;
 
 @Entity
 @Data
@@ -21,25 +21,17 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@ToString(exclude = {"cafeMenuList", "reviewList"})
-public class Cafe {
+@ToString(exclude = {"cafe"})
+public class CafeMenu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    @NotNull
     private String name;
 
-    private String address;
-
-    private String imgUrl;
-
-    private LocalTime opertimeStart;
-
-    private LocalTime opertimeEnd;
-
-    private String phoneNumber;
+    private Integer price;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -53,15 +45,12 @@ public class Cafe {
     @LastModifiedBy
     private String updatedBy;
 
-    // Cafe : CafeMenu = 1 : N
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cafe")
-    private List<CafeMenu> cafeMenuList;
+    // CafeMenu : Cafe = N : 1
+    @JsonIgnore
+    @ManyToOne
+    private Cafe cafe;
 
-    // Cafe : Review = 1 : N
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cafe")
-    private List<Review> reviewList;
-
-    // Cafe : ScoreSet = 1 : 1
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "cafe")
-    private ScoreSet scoreSet;
+    @Transient
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private boolean destroy;
 }

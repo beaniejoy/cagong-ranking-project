@@ -1,6 +1,6 @@
 package com.cagong.caferanking.application;
 
-import com.cagong.caferanking.domain.Review;
+import com.cagong.caferanking.domain.entity.Review;
 import com.cagong.caferanking.repository.ReviewRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ class ReviewServiceTests {
     public void getReviewByCafeId() {
         List<Review> mockReviews = new ArrayList<>();
         mockReviews.add(Review.builder()
-                .cafeId(1L)
+//                .cafeId(1L)
                 .mood(3.5)
                 .light(4.5)
                 .price(3.5)

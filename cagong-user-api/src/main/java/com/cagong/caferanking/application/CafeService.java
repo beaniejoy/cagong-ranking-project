@@ -1,13 +1,16 @@
 package com.cagong.caferanking.application;
 
-import com.cagong.caferanking.domain.*;
+import com.cagong.caferanking.domain.entity.Cafe;
+import com.cagong.caferanking.domain.entity.CafeMenu;
+import com.cagong.caferanking.domain.entity.Review;
+import com.cagong.caferanking.domain.entity.ScoreSet;
+import com.cagong.caferanking.domain.network.response.CafeApiResponse;
+import com.cagong.caferanking.domain.network.response.CafeMenuApiResponse;
+import com.cagong.caferanking.domain.network.response.ReviewApiResponse;
+import com.cagong.caferanking.domain.network.response.ScoreSetApiResponse;
 import com.cagong.caferanking.error.CafeNotFoundException;
-import com.cagong.caferanking.network.Pagination;
-import com.cagong.caferanking.network.response.CafeApiResponse;
-import com.cagong.caferanking.repository.CafeMenuRepository;
+import com.cagong.caferanking.page.Pagination;
 import com.cagong.caferanking.repository.CafeRepository;
-import com.cagong.caferanking.repository.ReviewRepository;
-import com.cagong.caferanking.repository.ScoreSetRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,23 +28,18 @@ import java.util.stream.Collectors;
 public class CafeService {
 
     private CafeRepository cafeRepositoy;
-    private CafeMenuRepository cafeMenuRepository;
-    private ReviewRepository reviewRepository;
-    private ScoreSetRepository scoreSetRepository;
+
+    private CafeMenuService cafeMenuService;
+
+    private ReviewService reviewService;
+
+    private ScoreSetService scoreSetService;
 
     public Map<String, Object> getCafes(Pageable pageable) {
         Page<Cafe> cafes = cafeRepositoy.findAll(pageable);
 
         List<CafeApiResponse> cafeApiResponseList = cafes.stream()
-                .map(cafe -> {
-                    CafeApiResponse cafeApiResponse = CafeApiResponse.builder()
-                            .id(cafe.getId())
-                            .name(cafe.getName())
-                            .imgUrl(cafe.getImgUrl())
-                            .build();
-
-                    return cafeApiResponse;
-                })
+                .map(this::response)
                 .collect(Collectors.toList());
 
         Pagination pagination = Pagination.builder()
@@ -58,10 +56,57 @@ public class CafeService {
         return cafePageMap;
     }
 
-    public Cafe getCafe(Long cafeId) {
-
-        return cafeRepositoy.findById(cafeId)
+    public CafeApiResponse getCafe(Long cafeId) {
+        Cafe cafe = cafeRepositoy.findById(cafeId)
                 .orElseThrow(() -> new CafeNotFoundException(cafeId));
+
+        CafeApiResponse cafeApiResponse = response(cafe);
+
+        // CafeMenuList
+        List<CafeMenu> cafeMenuList = cafe.getCafeMenuList();
+        List<CafeMenuApiResponse> cafeMenuApiResponseList = cafeMenuList.stream()
+                .map(cafeMenu -> cafeMenuService.response(cafeMenu))
+                .collect(Collectors.toList());
+        cafeApiResponse.setCafeMenuList(cafeMenuApiResponseList);
+
+        // ReviewList
+        List<Review> reviewList = cafe.getReviewList();
+        List<ReviewApiResponse> reviewApiResponseList = reviewList.stream()
+                .map(review -> reviewService.response(review))
+                .collect(Collectors.toList());
+        cafeApiResponse.setReviewList(reviewApiResponseList);
+
+        // ScoreSet
+        ScoreSet scoreSet = cafe.getScoreSet();
+        // TODO: scoreSet은 admin에서 Cafe생성할 때 자동적으로 table create하게 설정 예정,
+        //  굳이 default 로 0을 설정할 필요가 없을 것이다.
+        ScoreSetApiResponse scoreSetApiResponse = ScoreSetApiResponse.builder()
+                .mood(.0)
+                .light(.0)
+                .price(.0)
+                .taste(.0)
+                .build();
+
+        if (scoreSet != null) {
+            scoreSetApiResponse = scoreSetService.response(scoreSet);
+        }
+
+        cafeApiResponse.setScoreSet(scoreSetApiResponse);
+
+        return cafeApiResponse;
+    }
+
+    public CafeApiResponse response(Cafe cafe) {
+
+        return CafeApiResponse.builder()
+                .id(cafe.getId())
+                .name(cafe.getName())
+                .address(cafe.getAddress())
+                .imgUrl(cafe.getImgUrl())
+                .phoneNumber(cafe.getPhoneNumber())
+                .opertimeStart(cafe.getOpertimeStart())
+                .opertimeEnd(cafe.getOpertimeEnd())
+                .build();
     }
 
 }

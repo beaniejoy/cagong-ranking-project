@@ -1,7 +1,7 @@
 package com.cagong.caferanking.interfaces;
 
 import com.cagong.caferanking.application.ScoreSetService;
-import com.cagong.caferanking.domain.ScoreSet;
+import com.cagong.caferanking.domain.entity.ScoreSet;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ class ScoreSetControllerTests {
     @Test
     public void getScoreSet() throws Exception {
         ScoreSet scoreSet = ScoreSet.builder()
-                .cafeId(1L)
+//                .cafeId(1L)
                 .light(4.5)
                 .mood(3.5)
                 .price(2.5)

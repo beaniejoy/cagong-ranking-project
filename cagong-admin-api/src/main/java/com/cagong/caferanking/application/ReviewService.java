@@ -1,6 +1,6 @@
 package com.cagong.caferanking.application;
 
-import com.cagong.caferanking.domain.Review;
+import com.cagong.caferanking.domain.entity.Review;
 import com.cagong.caferanking.repository.ReviewRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
