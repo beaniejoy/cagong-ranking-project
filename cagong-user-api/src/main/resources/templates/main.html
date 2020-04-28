@@ -1,73 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layout}">
+
+<section layout:fragment="content">
+    <div class="container">
+        <div class="mainShow">
+            <div id="mainTitle">카공도르</div>
+            <p id="mainDescription">
+                현재 등록되어 있는 <b th:text="${cafeCount.count}"></b>개의 매장에 대해서 당신의 경험을 바탕으로 평가해보세요.
+            </p>
+
+            <nav class="navbar navbar-light" id="mainSearch">
+                <form class="form-inline" method="get" th:action="@{/cafes/search}">
+                    <input class="form-control mr-sm-2" type="text"
+                    placeholder="카페명을 입력해주세요" id="search" name="phrase"
+                    aria-label="Search" value="">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">카페찾기</button>
+                </form>
+            </nav>
+
+            <!-- Top 5 show-->
+            <button type="button" class="btn btn-warning" id="showRank">카페 Rank 보기</button>
+
+        </div>
 
 
-<div class="container">
-	<div class="mainShow">
-		<div id="mainTitle">카공도르</div>
-		<p id="mainDescription">현재 등록되어 있는 <%=infoDao.getTotalRows() %>개의 매장에 대해서 개인의 경험을 바탕으로 평가해보세요.</p>
-		<nav class="navbar navbar-light" id="mainSearch">
-			<form class="form-inline" method="post"
-				action="<%=contextPath%>/search.jsp">
-				<input class="form-control mr-sm-2" type="text"
-					placeholder="카페명을 입력해주세요" id="search" name="search"
-					aria-label="Search">
-				<button class="btn btn-secondary my-2 my-sm-0" type="submit">카페찾기</button>
-			</form>
-		</nav>
-		
-		<button type="button" class="btn btn-warning" id="showRank">카페 Rank 보기</button>
-	</div>
+        <div class="row" id="main_row" style="display: none">
+            <div class="col-2" style="padding: 0px;">
+                <div class="title">
+                    <h4 style="font-size:40px;">Cafe Rank</h4>
+                    <div class="list-group">
+                        <button type="button"
+                                class="list-group-item list-group-item-action" id="mood">분위기
+                        </button>
+                        <button type="button"
+                                class="list-group-item list-group-item-action" id="light">조명
+                        </button>
+                        <button type="button"
+                                class="list-group-item list-group-item-action" id="price">가격
+                        </button>
+                        <button type="button"
+                                class="list-group-item list-group-item-action" id="taste">맛
+                        </button>
+                    </div>
 
+                </div>
+            </div>
+            <div class="col-10" style="padding: 0px;">
+                <div class="content">
+                    <div class="title-rating" style="display: none;">
+                        <h4>
+                            <span>Rate  </span><span id="subtitle" style="font-size:40px;"></span>
+                        </h4>
 
-	<div class="row" id="main_row" style="display: none">
-		<div class="col-2" style="padding: 0px;">
-			<div class="title">
-				<h4 style="font-size:40px;">Cafe Rank</h4>
-				<div class="list-group">
-					<button type="button"
-						class="list-group-item list-group-item-action" id="mood">분위기</button>
-					<button type="button"
-						class="list-group-item list-group-item-action" id="light">조명</button>
-					<button type="button"
-						class="list-group-item list-group-item-action" id="price">가격</button>
-					<button type="button"
-						class="list-group-item list-group-item-action" id="taste">맛</button>
-				</div>
-				
-			</div>
-		</div>
-		<div class="col-10" style="padding: 0px;">
-			<div class="content">
-				<div class="title-rating" style="display: none;">
-					<h4>
-						<span>Rate  </span><span id="subtitle" style="font-size:40px;"></span>
-					</h4>
+                        <div class="result-content">
+                            <div class="card-deck">
+                                <!-- 5개 보여주는 곳-->
+                                <div class="card" th:each="num : ${#numbers.sequence(0, 4)}">
+                                    <a th:id="${'link' + num}">
+                                        <img class="card-img-top" th:id="${'shop-img' + num}">
+                                    </a>
+                                    <div class="card-body">
+                                        <h6 class="card-title" th:id="${'shop' + num}"></h6>
+                                        <p class="card-text" th:id="${'rate-no' + num}"></p>
+                                    </div>
+                                </div>
 
-					<div class="result-content">
-						<div class="card-deck">
-							<%
-								for (int i = 0; i < 5; i++) {
-							%>
-							<div class="card">
-								<a id="link<%=i%>"><img class="card-img-top"
-									id="shop-img<%=i%>"></a>
-								<div class="card-body">
-									<h6 class="card-title" id="shop<%=i%>"></h6>
-									<p class="card-text" id="rate-no<%=i%>"></p>
-								</div>
+                            </div>
+                        </div>
 
-							</div>
-							<%
-								}
-							%>
-						</div>
-					</div>
+                    </div>
 
-				</div>
+                </div>
+            </div>
+        </div>
 
-			</div>
-		</div>
-	</div>
-
-</div>
-
-<script src="/app/main.js"></script>
+    </div>
+    <script src="/app/main.js"></script>
+</section>
+</html>

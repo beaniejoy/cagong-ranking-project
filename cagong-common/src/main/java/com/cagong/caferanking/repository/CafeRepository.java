@@ -12,7 +12,10 @@ public interface CafeRepository extends CrudRepository<Cafe, Long> {
     @Override
     Optional<Cafe> findById(Long id);
 
-    List<Cafe> findAll();
+    Page<Cafe> findAllByNameContaining(String phrase, Pageable pageable);
 
     Page<Cafe> findAll(Pageable pageable);
+
+
+
 }

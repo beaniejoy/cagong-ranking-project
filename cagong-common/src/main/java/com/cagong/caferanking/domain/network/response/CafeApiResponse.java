@@ -37,4 +37,6 @@ public class CafeApiResponse {
 
     private ScoreSetApiResponse scoreSet;
 
+    private Long count;
+
 }

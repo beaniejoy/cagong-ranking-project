@@ -1,29 +1,26 @@
 $(function() {
 		// 중복제거를 위한 함수변수 설정
 		const ajax_button = function(category) {
-			$
-					.ajax({
+			$.ajax({
 						type : 'GET',
-						url : '/cafes/scoresets?index='
-								+ category + '&start=0&length=5',
+						url : '/cafes/scoresets?index=' + category,
 						dataType : 'json',
 						error : function() {
 							alert('error');
 						},
-						success : function(obj) {
-							console.log(obj);
-							const listArray = obj.items;
+						success : function(data) {
+							console.log(data);
 							let rate = category;
-							for (let i = 0; i < listArray.length; i++) {
-								let name = listArray[i].sname;
-								let value = listArray[i][rate];
-								let url = listArray[i].thumb;
+							for (let i = 0; i < data.length; i++) {
+								let name = data[i].cafeName;
+								let value = data[i][rate];
+								let url = data[i].cafeImgUrl;
 								let linkName = "#link" + i;
 								let imgName = "#shop-img" + i;
 								let shopName = "#shop" + i;
 								let rateId = "#rate-no" + i;
 								$(linkName).attr('href',
-										'/cafe/view.jsp?shop=' + name);
+										'/cafes/' + data[i].cafeId);
 								$(imgName).attr('src', url);
 								$(shopName).html(name);
 								$(rateId).html(value);
@@ -64,4 +61,6 @@ $(function() {
 			$(".row").show();
 			$("#activeBack").attr("style", "background:none");
 		})
+        
 	});
+

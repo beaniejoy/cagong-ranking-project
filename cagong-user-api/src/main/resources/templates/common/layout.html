@@ -9,8 +9,8 @@
 </head>
 
 <body>
-<!-- main page에서 전체 background-img 정하기 위해 div로 전체를 감싼 것-->
-<div>
+<!-- main.js page에서 전체 background-img 정하기 위해 div로 전체를 감싼 것-->
+<div id="background">
     <!--    header part setting-->
     <header th:insert="~{common/header :: header-frag}"></header>
     <!--    content-->
@@ -20,6 +20,7 @@
     <footer th:insert="~{common/footer :: footer-frag}"></footer>
 
 </div>
+<script src="/app/total.js"></script>
 
 </body>
 </html>

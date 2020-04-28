@@ -15,7 +15,7 @@
     </nav>
     <!-- breadcrumb end-->
 
-    <!-- main start -->
+    <!-- main.js start -->
     <div class="container">
         <div class="row" id="search_row">
             <div class="col-lg-12">
@@ -46,19 +46,19 @@
                         th:with="startNum = *{(currentPage / maxSize) * maxSize},
                                  countNum = ${startNum} + *{maxSize} >= *{totalPages} ? *{totalPages} - ${startNum + 1} : *{maxSize}">
                         <li class="page-item" th:classappend="*{currentPage} == 0? disabled">
-                            <a class="page-link" th:href="@{/cafes/search(page=*{currentPage - 1})}"
+                            <a class="page-link" th:href="@{/cafes/search(phrase=${phrase}, page=*{currentPage - 1})}"
                                tabindex="-1" aria-disabled="true">Previous</a>
                         </li>
 
                         <li class="page-item" th:each="num : ${#numbers.sequence(0, countNum)}">
                             <a class="page-link"
-                               th:href="@{/cafes/search(page=${num + startNum})}"
+                               th:href="@{/cafes/search(phrase=${phrase}, page=${num + startNum})}"
                                th:text="${num + startNum + 1}">
                             </a>
                         </li>
 
                         <li class="page-item" th:classappend="*{currentPage + 1 >= totalPages}? disabled">
-                            <a class="page-link" th:href="@{/cafes/search(page=*{currentPage + 1})}"
+                            <a class="page-link" th:href="@{/cafes/search(phrase=${phrase}, page=*{currentPage + 1})}"
                                tabindex="-1" aria-disabled="true">Next</a>
                         </li>
                     </ul>
@@ -68,7 +68,7 @@
             </div>
         </div>
     </div>
-    <!-- main end -->
+    <!-- main.js end -->
 </section>
 
 </html>

@@ -7,9 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @AllArgsConstructor
@@ -20,9 +18,11 @@ public class CafeController {
 
     @GetMapping("/search")
     public String list(Model model,
-                       @PageableDefault(sort = "id", direction = Sort.Direction.ASC, size = 4) Pageable pageable) {
-        model.addAttribute("cafes", cafeService.getCafes(pageable).get("cafes"));
-        model.addAttribute("page", cafeService.getCafes(pageable).get("page"));
+                       @RequestParam("phrase") String phrase,
+                       @PageableDefault(sort = "id", direction = Sort.Direction.ASC, size = 3) Pageable pageable) {
+        model.addAttribute("cafes", cafeService.getCafes(phrase, pageable).get("cafes"));
+        model.addAttribute("page", cafeService.getCafes(phrase, pageable).get("page"));
+        model.addAttribute("phrase", phrase);
         return "search";
     }
 

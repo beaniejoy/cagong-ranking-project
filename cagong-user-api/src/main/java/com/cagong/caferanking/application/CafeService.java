@@ -35,12 +35,20 @@ public class CafeService {
 
     private ScoreSetService scoreSetService;
 
-    public Map<String, Object> getCafes(Pageable pageable) {
-        Page<Cafe> cafes = cafeRepositoy.findAll(pageable);
+    public CafeApiResponse countAll() {
+        Long count = cafeRepositoy.count();
+
+        return CafeApiResponse.builder()
+                .count(count)
+                .build();
+    }
+
+    public Map<String, Object> getCafes(String phrase, Pageable pageable) {
+        Page<Cafe> cafes = cafeRepositoy.findAllByNameContaining(phrase, pageable);
 
         List<CafeApiResponse> cafeApiResponseList = cafes.stream()
                 .map(this::response)
-                .collect(Collectors.toList());
+                .collect(Collectors. toList());
 
         Pagination pagination = Pagination.builder()
                 .totalPages(cafes.getTotalPages())
@@ -95,7 +103,6 @@ public class CafeService {
 
         return cafeApiResponse;
     }
-
     public CafeApiResponse response(Cafe cafe) {
 
         return CafeApiResponse.builder()

@@ -49,6 +49,7 @@ public class ScoreSetService {
                 .collect(Collectors.toList());
     }
 
+    // TODO: Optional 어떻게 처리할 것인지 알아보자
     public ScoreSet getScoreSetByCafeId(Long cafeId) {
         return scoreSetRepository.findByCafeId(cafeId).
                 orElseThrow(() -> new ScoreSetNotFoundException(cafeId));

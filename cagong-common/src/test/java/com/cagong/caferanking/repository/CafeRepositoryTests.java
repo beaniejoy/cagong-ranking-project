@@ -34,4 +34,10 @@ public class CafeRepositoryTests extends CaferankingCommonApplicationTests {
         });
         assertNotNull(cafe);
     }
+
+    @Test
+    public void count() {
+        Long count = cafeRepository.count();
+        assertEquals(count, 9);
+    }
 }
