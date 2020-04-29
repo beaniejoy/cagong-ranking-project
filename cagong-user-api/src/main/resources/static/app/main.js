@@ -3,7 +3,7 @@ $(function() {
 		const ajax_button = function(category) {
 			$.ajax({
 						type : 'GET',
-						url : '/cafes/scoresets?index=' + category,
+						url : '/scoresets?index=' + category,
 						dataType : 'json',
 						error : function() {
 							alert('error');

@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/cafes")
 public class ScoreSetController {
 
     private ScoreSetService scoresService;

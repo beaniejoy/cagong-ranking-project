@@ -12,17 +12,20 @@ public class PageController {
 
     private CafeService cafeService;
 
-    @GetMapping("/main")
+    @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("cafeCount", cafeService.countAll());
         return "main";
     }
 
+    // TODO: fastcampus 로그인/회원가입 UI처럼 통합 관리
+    // 로그인 창으로 이동
     @GetMapping("/login")
     public String login(Model model) {
         return "member/login";
     }
 
+    // 회원가입 창으로 이동
     @GetMapping("/regst")
     public String register(Model model) {
         return "member/regst";
