@@ -61,6 +61,6 @@ $(function() {
 			$(".row").show();
 			$("#activeBack").attr("style", "background:none");
 		})
-        
+
 	});
 

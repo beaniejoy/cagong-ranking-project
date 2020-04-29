@@ -1,5 +1,6 @@
-package com.cagong.caferanking.domain.network.response;
+package com.cagong.caferanking.domain.network.request;
 
+import com.cagong.caferanking.domain.network.response.ReviewApiResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Accessors(chain = true)
-public class UserApiResponse {
+public class UserApiRequest {
 
     private Long id;
 
@@ -24,6 +25,6 @@ public class UserApiResponse {
     private String phoneNumber;
 
     private String password;
-
+    
     private List<ReviewApiResponse> reviewApiResponseList;
 }

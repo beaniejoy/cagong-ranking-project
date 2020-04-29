@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layout}">
+
+<section layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>회원 가입</h3>
+                <form name="f" method="post" action="/users">
+                    <div class="form-group row">
+                        <label for="account" class="col-sm-2 col-form-label">이름</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="account" name="account"
+                                   placeholder="한글로 공백 없이 입력해주세요.">
+                        </div>
+                        <label class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10" id="accountMessage"></div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-2 col-form-label">이메일</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="email" name="email"
+                                   placeholder="이메일 주소를 입력해주세요.">
+                        </div>
+                        <label class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10" id="emailMessage"></div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="phone" class="col-sm-2 col-form-label">휴대전화</label>
+                        <div class="col-sm-10">
+                            <input type="tel" class="form-control" id="phone" name="phoneNumber"
+                                   placeholder="- 없이 숫자만 입력해주세요.">
+                        </div>
+                        <label class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10" id="phoneMessage"></div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="password" class="col-sm-2 col-form-label">비밀번호</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="password" name="password"
+                                   placeholder="비밀번호를 입력해주세요.">
+                        </div>
+                        <label class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10" id="passwordMessage"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="repassword" name="repassword"
+                                   placeholder="비밀번호를 다시 한번 입력해주세요.">
+                        </div>
+                        <label class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10" id="repasswordMessage"></div>
+                    </div>
+
+                    <input type="hidden" id="checkPhone" value="no"/>
+                    <input type="hidden" id="checkId" value="no"/>
+                </form>
+
+                <div class="text-right">
+                    <button type="button" id="saveMember" class="btn btn-outline-success">가입하기</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/app/regst.js"></script>
+</section>
+</html>
