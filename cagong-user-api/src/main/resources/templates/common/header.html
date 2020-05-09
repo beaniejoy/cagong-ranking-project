@@ -4,7 +4,7 @@
 <header th:fragment="header-frag">
     <!-- navbar start-->
     <nav class="navbar navbar-expand-lg navbar-dark" id="top-navbar">
-        <a class="navbar-brand" href="/main">카공도르</a>
+        <a class="navbar-brand" href="/home">카공도르</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarTogglerDemo02"
@@ -21,8 +21,19 @@
 
             </ul>
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="/regst">회원가입 </a></li>
-                <li class="nav-item"><a class="nav-link" href="/login">로그인</a></li>
+                <li class="nav-item" th:if="${session.member == null}">
+                    <a class="nav-link" href="/regst">회원가입 </a>
+                </li>
+                <li class="nav-item" th:if="${session.member == null}">
+                    <a class="nav-link" href="/login">로그인</a>
+                </li>
+
+                <li class="nav-item" th:if="${session.member != null}">
+                    <span th:text="${session.member.account}"></span> 님 환영합니다.
+                </li>
+                <li class="nav-item" th:if="${session.member != null}">
+                    <a class="nav-link" href="/logout">로그아웃</a>
+                </li>
 
                 <!--                form 이 부분 경고 왜 나오는지 알아보자-->
                 <form class="form-inline my-2 my-lg-0" id="search-bar" method="get" action="/cafes/search">

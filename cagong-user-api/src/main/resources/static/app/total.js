@@ -1,12 +1,13 @@
 let url = window.location.href;
-console.log(url);
+let hostname = window.location.hostname;
+console.log(hostname);
 let element = document.getElementById('background');
 let navbar = document.getElementById('top-navbar');
 let searchbar = document.getElementById('search-bar');
 let footbar = document.getElementById('footer-bar');
 
 
-if (url.includes("main")) {
+if (url.includes("home")) {
     element.removeAttribute('id');
     element.setAttribute('id', 'activeBack');
     searchbar.style.display = "none";

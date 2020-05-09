@@ -1,4 +1,4 @@
-package com.cagong.caferanking.interfaces;
+package com.cagong.caferanking.interfaces.erroradvice;
 
 import com.cagong.caferanking.error.CafeNotFoundException;
 import org.springframework.http.HttpStatus;

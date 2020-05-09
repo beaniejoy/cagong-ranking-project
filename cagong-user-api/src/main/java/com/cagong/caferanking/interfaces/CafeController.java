@@ -2,6 +2,7 @@ package com.cagong.caferanking.interfaces;
 
 import com.cagong.caferanking.application.CafeService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -10,10 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@AllArgsConstructor
 @RequestMapping("/cafes")
 public class CafeController {
 
+    @Autowired
     private CafeService cafeService;
 
     @GetMapping("/search")

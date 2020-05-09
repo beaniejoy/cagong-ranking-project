@@ -51,7 +51,37 @@ $(function () {
 
         }
 
-        f.submit();
+        var params = "account=" + $("#account").val() +
+                    "&email=" + $("#email").val() +
+                    "&phoneNumber=" + $("#phone").val() +
+                    "&password=" + $("#password").val();
+
+        $.ajax({
+            type: 'POST',
+            url: 'users',
+            data: params,
+            dataType: 'text',
+            success: function (data) {
+                var result = Number(data);
+                switch (result) {
+                    case 0:
+                        alert("성공적으로 회원가입이 되었습니다.");
+                        location.href = "/login";
+                        break;
+                    case 1:
+                        alert("이전에 등록된 이메일이 존재합니다.");
+                        $("#email").addClass("is-invalid");
+                        $("#emailMessage").html("<span class='text-danger'>이전에 등록된 이메일이 존재합니다.</span>");
+                        break;
+                    default:
+                        alert("회원가입에 오류가 발생했습니다. 잠시 후 다시 진행해주세요.");
+                        break;
+                }
+            },
+            error: function(error) {
+                alert("오류 발생 " + error);
+            }
+        })
     });
 
     $("#email").keyup(function () {
@@ -59,7 +89,7 @@ $(function () {
 
         var email = $("#email").val();
 
-        if(!emailRule.test(email)) {
+        if (!emailRule.test(email)) {
             $("#email").addClass("is-invalid");
             $("#emailMessage").html("<span class='text-danger'>이메일 주소 규칙에 맞게 입력해주세요.</span>");
         } else {
@@ -73,7 +103,7 @@ $(function () {
 
         var phoneNumber = $("#phone").val();
 
-        if(!phoneRule.test(phoneNumber)) {
+        if (!phoneRule.test(phoneNumber)) {
             $("#phone").addClass("is-invalid");
             $("#phoneMessage").html("<span class='text-danger'>번호 입력 규칙에 맞게 입력해주세요.</span>");
         } else {
