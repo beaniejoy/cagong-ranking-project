@@ -27,9 +27,6 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // TODO: token으로 받아서 사용할 것
-    private String userName;
-
     private Double mood;
     private Double light;
     private Double price;

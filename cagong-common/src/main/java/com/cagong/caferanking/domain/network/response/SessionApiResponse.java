@@ -13,8 +13,10 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class SessionApiResponse {
 
-    private String account;
+    private Long id;
 
     private String email;
+
+    private String account;
 
 }

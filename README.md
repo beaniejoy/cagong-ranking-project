@@ -32,11 +32,16 @@ project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이�
   
 - **User-api**
   - **Cafe Entity**
-    - GET /cafes : 모든 카페리스트 조회(SELECT)
+    - GET /cafes/search : search page 내보낼 카페 리스트 조회(pagination 처리)
     - GET /cafes/{cafeId} : 개별 카페 상세정보 조회  
       (user에서 카페 상세정보에 cafeMenu, review, scoreSet에 대한 정보도 포함)
   - **Review Entity**
     - POST /cafe/{cafeId}/reviews : 새로운 리뷰 작성(CREATE), user에서만 생성 가능
-
+  - **ScoreSet Entity**
+    - GET /scoresets: 카테코리 별 점수 top 5 카페 목록 조회
+  - **Member**
+    - POST /users: 회원 가입
+    - POST /session: 로그인(세션 생성)
+    
 ## 🔖 Dev Log
 - [Cagong Project 개발 일지](https://github.com/hanbinleejoy/daily-dev-log/tree/master/project/cagong-ranking-project)

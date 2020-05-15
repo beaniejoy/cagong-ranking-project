@@ -1,6 +1,9 @@
-package com.cagong.caferanking.domain.network.response;
+package com.cagong.caferanking.domain.network.request;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 @Data
@@ -8,7 +11,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Builder
 @Accessors(chain = true)
-public class ScoreSetApiResponse {
+public class ReviewApiRequest {
 
     private Long id;
 
@@ -20,9 +23,6 @@ public class ScoreSetApiResponse {
 
     private Double taste;
 
-    private Long cafeId;
+    private String comment;
 
-    private String cafeName;
-
-    private String cafeImgUrl;
 }

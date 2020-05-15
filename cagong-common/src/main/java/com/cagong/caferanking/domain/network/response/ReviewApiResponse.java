@@ -15,8 +15,10 @@ public class ReviewApiResponse {
 
     private Long id;
 
-    // TODO: jwr관련해서 어떻게 처리할 것인지 고민하기
+    // TODO: jwt관련해서 어떻게 처리할 것인지 고민하기
     private String userName;
+
+    private String cafeName;
 
     private Double mood;
 
@@ -28,8 +30,4 @@ public class ReviewApiResponse {
 
     private String comment;
 
-    private Long cafeId;
-
-    // TODO: jwr관련해서 어떻게 처리할 것인지 고민하기
-    private Long userId;
 }
