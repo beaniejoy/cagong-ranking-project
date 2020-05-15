@@ -1,14 +1,17 @@
 package com.cagong.caferanking.interfaces;
 
 import com.cagong.caferanking.application.ReviewService;
-import com.cagong.caferanking.domain.entity.Review;
-import lombok.AllArgsConstructor;
+import com.cagong.caferanking.domain.network.request.ReviewApiRequest;
+import com.cagong.caferanking.domain.network.response.ReviewApiResponse;
+import com.cagong.caferanking.domain.network.response.SessionApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.net.URI;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.net.URISyntaxException;
 
 @RestController
@@ -18,19 +21,24 @@ public class ReviewController {
     private ReviewService reviewService;
 
     @PostMapping("/cafes/{cafeId}/reviews")
-    public ResponseEntity<?> create(
+    public String create(
+            HttpServletRequest request,
             @PathVariable("cafeId") Long cafeId,
-            @Valid @RequestBody Review resource)
+            ReviewApiRequest resource)
             throws URISyntaxException {
 
         // TODO: token을 이용한 userName 받아오기
+        HttpSession session = request.getSession();
+        SessionApiResponse memInfo = (SessionApiResponse) session.getAttribute("member");
 
-        Review review = reviewService.addReview(cafeId,
-                "Joy",
+        reviewService.addReview(
+                cafeId,
+                memInfo.getId(),
                 resource.getMood(), resource.getLight(), resource.getPrice(), resource.getTaste(),
                 resource.getComment());
 
-        String url = "/cafes/" + cafeId + "/reviews/" + review.getId();
-        return ResponseEntity.created(new URI(url)).body("{}");
+
+        return "redirect:/cafes/" + cafeId;
     }
+
 }

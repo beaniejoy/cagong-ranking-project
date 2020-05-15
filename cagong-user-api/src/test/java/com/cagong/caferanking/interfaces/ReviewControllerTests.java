@@ -28,9 +28,9 @@ class ReviewControllerTests {
 
     @Test
     public void create() throws Exception {
-        given(reviewService.addReview(1L,
-                "Joy", 4.5, 3.5, 2.5, 1.5, "Good place")).willReturn(
-                Review.builder().id(123L).build());
+//        given(reviewService.addReview(1L,
+//                2L, 4.5, 3.5, 2.5, 1.5, "Good place")).willReturn(
+//                Review.builder().id(123L).build());
 
         mvc.perform(post("/cafes/1/reviews")
                 .contentType(MediaType.APPLICATION_JSON)

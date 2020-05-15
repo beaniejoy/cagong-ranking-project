@@ -25,6 +25,7 @@ public class SessionController {
         UserApiResponse userApiResponse = userService.authenticate(resource.getEmail(), resource.getPassword());
 
         SessionApiResponse sessionApiResponse = SessionApiResponse.builder()
+                .id(userApiResponse.getId())
                 .email(userApiResponse.getEmail())
                 .account(userApiResponse.getAccount())
                 .build();

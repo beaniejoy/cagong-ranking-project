@@ -9,7 +9,7 @@
     <!-- breadcrumb start -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<%=contextPath%>/main.jsp">Main</a></li>
+            <li class="breadcrumb-item"><a href="home">Main</a></li>
             <li class="breadcrumb-item active" aria-current="page">카페검색</li>
         </ol>
     </nav>
@@ -32,8 +32,7 @@
                                 <p class="card-text"></p>
                             </div>
                             <div class="card-body">
-                                <a href="#" class="card-link">수정하기</a>
-                                <a href="#" class="card-link">평가하기</a>
+                                <a th:href="@{/cafes/{cafeId}/write(cafeId=${cafe.id})}" class="card-link">평가하기</a>
                             </div>
                         </div>
                     </div>

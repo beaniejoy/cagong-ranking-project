@@ -21,13 +21,12 @@ class ReviewServiceTests {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        reviewService = new ReviewService(reviewRepository);
+//        reviewService = new ReviewService(reviewRepository);
     }
 
     @Test
     public void addReview() {
-        reviewService.addReview(1L,
-                "Joy", 4.5, 3.5, 2.5, 1.5,
+        reviewService.addReview(1L, 2L, 4.5, 3.5, 2.5, 1.5,
                 "Good place");
 
         verify(reviewRepository).save(any());

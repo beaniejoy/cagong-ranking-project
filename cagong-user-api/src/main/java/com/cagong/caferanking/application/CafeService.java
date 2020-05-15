@@ -93,6 +93,7 @@ public class CafeService {
                 .light(.0)
                 .price(.0)
                 .taste(.0)
+                .cafeId(cafeId)
                 .build();
 
         if (scoreSet != null) {
