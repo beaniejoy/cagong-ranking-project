@@ -2,19 +2,17 @@ package com.cagong.caferanking.interfaces;
 
 import com.cagong.caferanking.application.ReviewService;
 import com.cagong.caferanking.domain.network.request.ReviewApiRequest;
-import com.cagong.caferanking.domain.network.response.ReviewApiResponse;
 import com.cagong.caferanking.domain.network.response.SessionApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.net.URISyntaxException;
 
-@RestController
+@Controller
 public class ReviewController {
 
     @Autowired

@@ -1,9 +1,14 @@
 package com.cagong.caferanking.interfaces.erroradvice;
 
 import com.cagong.caferanking.application.PasswordWrongException;
+import com.cagong.caferanking.application.SessionNotAssignedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @ControllerAdvice
 public class SessionErrorAdvice {
@@ -12,5 +17,10 @@ public class SessionErrorAdvice {
     @ExceptionHandler(PasswordWrongException.class)
     public String handleWrongPassword() {
         return "1";
+    }
+
+    @ExceptionHandler(SessionNotAssignedException.class)
+    public String handleWrongPassword(HttpServletResponse response) throws IOException {
+        return "review/write_handle";
     }
 }

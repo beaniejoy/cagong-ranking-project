@@ -2,6 +2,7 @@ package com.cagong.caferanking.page;
 
 import com.cagong.caferanking.application.CafeService;
 import com.cagong.caferanking.application.ReviewService;
+import com.cagong.caferanking.application.SessionNotAssignedException;
 import com.cagong.caferanking.domain.network.request.SessionApiRequest;
 import com.cagong.caferanking.domain.network.response.SessionApiResponse;
 import lombok.AllArgsConstructor;
@@ -44,11 +45,14 @@ public class PageController {
     // Review Write Page
     @GetMapping("/cafes/{cafeId}/write")
     public String write(HttpServletRequest request, Model model, @PathVariable Long cafeId) {
-        
-        // TODO: Session이 null일 때 처리해야함
+
         HttpSession session = request.getSession();
         // Login Member Inf.
         SessionApiResponse memInfo = (SessionApiResponse) session.getAttribute("member");
+
+        if(memInfo == null) {
+            throw new SessionNotAssignedException();
+        }
 
         model.addAttribute("review",
                 reviewService.getReview(cafeId, memInfo.getId()));

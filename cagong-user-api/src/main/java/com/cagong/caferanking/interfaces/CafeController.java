@@ -30,7 +30,7 @@ public class CafeController {
     @GetMapping("/{cafeId}")
     public String detail(Model model, @PathVariable("cafeId") Long cafeId) {
         model.addAttribute("cafe", cafeService.getCafe(cafeId));
-        return "view";
+        return "view/view";
     }
 
 }

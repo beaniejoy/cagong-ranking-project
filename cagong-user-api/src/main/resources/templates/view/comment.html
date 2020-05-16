@@ -1,0 +1,58 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:insert="~{common/head :: head-setup}">
+    <title>카공도르</title>
+    <!--    meta tag & CSS Setting-->
+</head>
+<body>
+<form style="margin-bottom: 50px;">
+
+    <div class="form-group" th:if="${comments}" th:each="comment : ${comments}">
+        <label th:text="${comment.account}"></label>
+        <textarea class="form-control" rows="3" readonly="readonly" th:text="${comment.content}"></textarea>
+    </div>
+
+    <div th:if="!${comments}">
+        <h4>리뷰가 존재하지 않습니다.</h4>
+    </div>
+
+</form>
+
+<!-- Pagination-->
+<!-- TODO: page 범위를 범어난 값들에 대해 예외 handling해야 한다.-->
+<nav aria-label="Page navigation example" th:object="${page}">
+    <ul class="pagination justify-content-center"
+        th:with="startNum = *{(currentPage / maxSize) * maxSize},
+                                 countNum = ${startNum} + *{maxSize} >= *{totalPages} ? *{totalPages} - ${startNum + 1} : *{maxSize}">
+        <li class="page-item" th:classappend="*{currentPage} == 0? disabled">
+            <a class="page-link" th:href="@{/cafes/{cafeId}/comments(cafeId=${cafeId}, page=*{currentPage - 1})}"
+               tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+
+        <li class="page-item" th:each="num : ${#numbers.sequence(0, countNum)}">
+            <a class="page-link"
+               th:href="@{/cafes/{cafeId}/comments(cafeId=${cafeId}, page=${num + startNum})}"
+               th:text="${num + startNum + 1}">
+            </a>
+        </li>
+
+        <li class="page-item" th:classappend="*{currentPage + 1 >= totalPages}? disabled">
+            <a class="page-link" th:href="@{/cafes/{cafeId}/comments(cafeId=${cafeId}, page=*{currentPage + 1})}"
+               tabindex="-1" aria-disabled="true">Next</a>
+        </li>
+    </ul>
+</nav>
+<!-- Pagination end-->
+
+</body>
+<script>
+
+
+</script>
+</html>
+
+
+

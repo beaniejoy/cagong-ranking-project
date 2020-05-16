@@ -2,16 +2,24 @@ package com.cagong.caferanking.application;
 
 import com.cagong.caferanking.domain.entity.Review;
 import com.cagong.caferanking.domain.entity.ScoreSet;
+import com.cagong.caferanking.domain.network.response.CommentApiResponse;
 import com.cagong.caferanking.domain.network.response.ReviewApiResponse;
+import com.cagong.caferanking.page.Pagination;
 import com.cagong.caferanking.repository.CafeRepository;
 import com.cagong.caferanking.repository.ReviewRepository;
 import com.cagong.caferanking.repository.ScoreSetRepository;
 import com.cagong.caferanking.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -25,6 +33,34 @@ public class ReviewService {
     private UserRepository userRepository;
 
     private ScoreSetRepository scoreSetRepository;
+
+    // TODO: CommentService로 아예 분리할 것
+    public Map<String, Object> getComments(Long cafeId, Pageable pageable) {
+        Page<Review> reviews = reviewRepository.findAllByCafeId(cafeId, pageable);
+
+        List<CommentApiResponse> comments = reviews.stream()
+                .map(review -> {
+                    return CommentApiResponse.builder()
+                            .id(review.getId())
+                            .account(review.getUser().getAccount())
+                            .content(review.getComment())
+                            .build();
+                })
+                .collect(Collectors.toList());
+
+        Pagination pagination = Pagination.builder()
+                .totalPages(reviews.getTotalPages())
+                .totalElements(reviews.getTotalElements())
+                .currentPage(reviews.getNumber())
+                .currentElements(reviews.getNumberOfElements())
+                .build();
+
+        Map<String, Object> commentPageMap = new HashMap<>();
+        commentPageMap.put("comments", comments);
+        commentPageMap.put("page", pagination);
+
+        return commentPageMap;
+    }
 
     public ReviewApiResponse getReview(Long cafeId, Long userId) {
         Review review = reviewRepository.findByCafeIdAndUserId(cafeId, userId).orElse(null);
@@ -71,6 +107,7 @@ public class ReviewService {
                     .build();
 
         }
+
         Review saved = reviewRepository.save(setReview);
 
         setNewAverage(cafeId);
@@ -78,7 +115,7 @@ public class ReviewService {
         return response(saved);
 
     }
-    
+
     // review 작성 완료 후 avg 새로운 결과 다시 ScoreSet table에 적용
     private void setNewAverage(Long cafeId) {
         Object avgResult = reviewRepository.findAverageByCafeId(cafeId);
@@ -96,7 +133,7 @@ public class ReviewService {
                     return scoreSet;
                 })
                 .map(scoreSet -> scoreSetRepository.save(scoreSet));
-        // TODO orElseGet 처리하기
+        // TODO: orElseGet 처리하기
 
     }
 

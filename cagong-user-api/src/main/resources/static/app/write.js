@@ -12,7 +12,7 @@ $(function() {
 		});
 
 		$("#saveCafe").click(function() {
-			    f.submit();
+			f.submit();
 		});
 
 
