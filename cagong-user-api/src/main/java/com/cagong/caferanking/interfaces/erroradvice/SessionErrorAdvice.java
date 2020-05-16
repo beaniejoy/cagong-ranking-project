@@ -20,7 +20,7 @@ public class SessionErrorAdvice {
     }
 
     @ExceptionHandler(SessionNotAssignedException.class)
-    public String handleWrongPassword(HttpServletResponse response) throws IOException {
+    public String handleNotAssigned(HttpServletResponse response) throws IOException {
         return "review/write_handle";
     }
 }
