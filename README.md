@@ -2,7 +2,7 @@
 
 Cafe Ranking Service for people who study at cafe (spring boot)
 
-> improved version. 🔗[project-cafe-ranking](https://github.com/hanbinleejoy/project-cafe-ranking)
+> improved version of 🔗[project-cafe-ranking](https://github.com/hanbinleejoy/project-cafe-ranking)
 
 project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이션을 개발 중에 있습니다.
 
