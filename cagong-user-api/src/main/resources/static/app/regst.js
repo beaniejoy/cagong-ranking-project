@@ -51,8 +51,10 @@ $(function () {
 
         }
 
-
-
+        var params = "account=" + $("#account").val() +
+                    "&email=" + $("#email").val() +
+                    "&phoneNumber=" + $("#phone").val() +
+                    "&password=" + $("#password").val();
 
         $.ajax({
             type: 'POST',

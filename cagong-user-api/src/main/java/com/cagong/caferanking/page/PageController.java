@@ -3,7 +3,6 @@ package com.cagong.caferanking.page;
 import com.cagong.caferanking.application.CafeService;
 import com.cagong.caferanking.application.ReviewService;
 import com.cagong.caferanking.application.SessionNotAssignedException;
-import com.cagong.caferanking.domain.network.request.SessionApiRequest;
 import com.cagong.caferanking.domain.network.response.SessionApiResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -32,7 +31,11 @@ public class PageController {
     // TODO: fastcampus 로그인/회원가입 UI처럼 통합 관리
     // Login Page
     @GetMapping("/login")
-    public String login() {
+    public String login(HttpServletRequest request) {
+        if (request.getSession().getAttribute("member") != null) {
+            return "member/login_handle";
+        }
+
         return "member/login";
     }
 
@@ -50,7 +53,7 @@ public class PageController {
         // Login Member Inf.
         SessionApiResponse memInfo = (SessionApiResponse) session.getAttribute("member");
 
-        if(memInfo == null) {
+        if (memInfo == null) {
             throw new SessionNotAssignedException();
         }
 

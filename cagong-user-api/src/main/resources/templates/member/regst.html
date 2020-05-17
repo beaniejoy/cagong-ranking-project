@@ -1,75 +1,88 @@
-<!DOCTYPE html>
-<html lang="ko"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{common/layout}">
+<!doctype html>
+<html lang="en">
 
-<section layout:fragment="content">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>회원 가입</h3>
-                    <div class="form-group row">
-                        <label for="account" class="col-sm-2 col-form-label">이름</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="account" name="account"
-                                   placeholder="한글로 공백 없이 입력해주세요.">
-                        </div>
-                        <label class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10" id="accountMessage"></div>
-                    </div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.0.1">
+    <title>Member Registration Page</title>
 
-                    <div class="form-group row">
-                        <label for="email" class="col-sm-2 col-form-label">이메일</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="email" name="email"
-                                   placeholder="이메일 주소를 입력해주세요.">
-                        </div>
-                        <label class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10" id="emailMessage"></div>
-                    </div>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
 
-                    <div class="form-group row">
-                        <label for="phone" class="col-sm-2 col-form-label">휴대전화</label>
-                        <div class="col-sm-10">
-                            <input type="tel" class="form-control" id="phone" name="phoneNumber"
-                                   placeholder="- 없이 숫자만 입력해주세요.">
-                        </div>
-                        <label class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10" id="phoneMessage"></div>
-                    </div>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 
-                    <div class="form-group row">
-                        <label for="password" class="col-sm-2 col-form-label">비밀번호</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="password" name="password"
-                                   placeholder="비밀번호를 입력해주세요.">
-                        </div>
-                        <label class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10" id="passwordMessage"></div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="repassword" name="repassword"
-                                   placeholder="비밀번호를 다시 한번 입력해주세요.">
-                        </div>
-                        <label class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10" id="repasswordMessage"></div>
-                    </div>
+    <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
 
-                    <input type="hidden" id="checkPhone" value="no"/>
-                    <input type="hidden" id="checkId" value="no"/>
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="/css/signin.css" rel="stylesheet">
 
+    <!-- javascript setup -->
+    <script src="/js/jquery-3.5.0.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <!-- javascript setup end -->
+</head>
 
-                <div class="text-right">
-                    <button type="button" id="saveMember" class="btn btn-outline-success">가입하기</button>
-
-                </div>
-            </div>
-        </div>
+<body>
+<div class="form-signin">
+    <div class="text-left" style="font: 30px bold">
+        <p>회원 가입</p>
     </div>
-    <script src="/app/regst.js"></script>
-</section>
+    <div class="form-group">
+        <label class="text-left" for="account"><b>이름</b></label>
+        <input type="text" class="form-control" id="account" name="account" aria-describedby="accountMessage"
+               placeholder="한글로 공백 없이 입력해주세요.">
+        <small class="form-text text-muted" id="accountMessage"> </small>
+    </div>
+
+    <div class="form-group">
+        <label class="text-left" for="email"><b>이메일</b></label>
+        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailMessage"
+               placeholder="이메일 주소를 입력해주세요.">
+        <small class="form-text text-muted" id="emailMessage"> </small>
+    </div>
+    <div class="form-group">
+        <label class="text-left" for="phone"><b>휴대전화</b></label>
+        <input type="phone" class="form-control" id="phone" name="phoneNumber" aria-describedby="phoneMessage"
+               placeholder="- 없이 숫자만 입력해주세요.">
+        <small class="form-text text-muted" id="phoneMessage"> </small>
+    </div>
+    <div class="form-group">
+        <label class="text-left" for="password"><b>비밀번호</b></label>
+        <input type="password" class="form-control" id="password" name="password"
+               placeholder="비밀번호를 입력해주세요.">
+        <small id="passwordMessage" class="form-text text-muted"> </small>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" id="repassword" name="repassword"
+               placeholder="비밀번호를 다시 한번 입력해주세요.">
+        <small class="form-text text-muted" id="repasswordMessage"> </small>
+    </div>
+
+    <button type="button" class="btn btn-lg btn-primary btn-block" id="saveMember">가입하기</button>
+    <a class="btn btn-lg btn-success btn-block" href="/home">홈으로 이동하기</a>
+    <p class="mt-5 mb-3 text-muted text-center"><strong>Copyright &copy; 2020 <a
+            href="https://github.com/hanbinleejoy">BeanieJoy</a>.</strong> <br>
+        All rights reserved.
+    </p>
+</div>
+<script src="/app/regst.js"></script>
+</body>
+
 </html>

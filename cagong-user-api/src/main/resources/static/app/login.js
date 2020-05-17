@@ -4,6 +4,7 @@ $(function () {
     var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
     $("#email").keyup(function () {
+
         $("#email").removeClass("is-invalid");
         $("#emailMessage").html('');
 
@@ -13,6 +14,11 @@ $(function () {
             $("#email").addClass("is-invalid");
             $("#emailMessage").html("<span class='text-danger'>이메일 주소 규칙에 맞게 입력해주세요.</span>");
         } else {
+            $("#email").removeClass("is-invalid");
+            $("#emailMessage").html('');
+        }
+
+        if ($("#email").val() == '') {
             $("#email").removeClass("is-invalid");
             $("#emailMessage").html('');
         }
@@ -55,7 +61,7 @@ $(function () {
                     switch (result) {
                         case 0:
                             alert("성공적으로 로그인이 되었습니다.");
-                            location.href = "/home";
+                            history.back(-1);
                             break;
                         case 1:
                             alert("로그인 정보가 일치하지 않습니다.");
