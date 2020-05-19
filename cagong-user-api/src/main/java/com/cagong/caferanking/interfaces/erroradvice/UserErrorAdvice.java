@@ -1,7 +1,7 @@
 package com.cagong.caferanking.interfaces.erroradvice;
 
-import com.cagong.caferanking.application.EmailExistedException;
-import com.cagong.caferanking.application.EmailNotExistedException;
+import com.cagong.caferanking.error.EmailExistedException;
+import com.cagong.caferanking.error.EmailNotExistedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

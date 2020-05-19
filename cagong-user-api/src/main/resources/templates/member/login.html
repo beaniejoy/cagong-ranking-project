@@ -31,11 +31,6 @@
       }
     }
 
-
-
-
-
-
     </style>
     <!-- Custom styles for this template -->
     <link href="/css/signin.css" rel="stylesheet">
@@ -47,32 +42,48 @@
 </head>
 
 <body>
-<div class="form-signin">
-    <div class="text-center">
-        <a href="/home">
-            <img class="mb-4" src="/img/cafe_login.png" alt="" width="250" height="150">
-        </a>
+<div class="sign-total-form">
+
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item w-50 ">
+                <a class="nav-link active text-warning font-weight-bold" href="#">로그인</a>
+            </li>
+            <li class="nav-item w-50">
+                <a class="nav-link text-muted" href="/regst">회원가입</a>
+            </li>
+        </ul>
     </div>
-    <div class="form-group">
-        <label class="text-left" for="email"><b>이메일</b></label>
-        <input type="email" class="form-control" placeholder="이메일 주소를 입력해주세요." id="email" name="email" aria-describedby="emailMessage">
-        <small class="form-text text-muted" id="emailMessage"> </small>
+
+    <div class="form-signin">
+        <!--    <div class="text-center" id="login-logo">-->
+        <!--        <a href="/home">-->
+        <!--            <img class="mb-4" src="/img/cafe_login.png" alt="" width="250" height="150">-->
+        <!--        </a>-->
+        <!--    </div>-->
+        <div class="form-group">
+            <label class="text-left" for="email"><b>이메일</b></label>
+            <input type="email" class="form-control" placeholder="이메일 주소를 입력해주세요." id="email" name="email"
+                   aria-describedby="emailMessage">
+            <small class="form-text text-muted" id="emailMessage"> </small>
+        </div>
+        <div class="form-group">
+            <label class="text-left" for="password"><b>비밀번호</b></label>
+            <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요." id="password" name="password">
+            <small id="passwordMessage" class="form-text text-muted"> </small>
+        </div>
+        <!--    <div class="form-group form-check">-->
+        <!--        <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+        <!--        <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+        <!--    </div>-->
+        <button type="button" class="btn btn-lg btn-warning btn-block text-white font-weight-bold" id="loginMember">
+            로그인
+        </button>
+        <p class="mt-5 mb-3 text-muted text-center"><strong>Copyright &copy; 2020 <a
+                href="https://github.com/hanbinleejoy">BeanieJoy</a>.</strong> <br>
+            All rights reserved.
+        </p>
     </div>
-    <div class="form-group">
-        <label class="text-left" for="password"><b>비밀번호</b></label>
-        <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요." id="password" name="password">
-        <small id="passwordMessage" class="form-text text-muted"> </small>
-    </div>
-    <!--    <div class="form-group form-check">-->
-    <!--        <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
-    <!--        <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
-    <!--    </div>-->
-    <button type="button" class="btn btn-lg btn-primary btn-block" id="loginMember">로그인</button>
-    <a class="btn btn-lg btn-success btn-block" href="/regst">회원가입</a>
-    <p class="mt-5 mb-3 text-muted text-center"><strong>Copyright &copy; 2020 <a
-            href="https://github.com/hanbinleejoy">BeanieJoy</a>.</strong> <br>
-        All rights reserved.
-    </p>
 </div>
 <script src="/app/login.js"></script>
 </body>

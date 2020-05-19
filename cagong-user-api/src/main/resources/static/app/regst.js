@@ -96,6 +96,11 @@ $(function () {
             $("#email").removeClass("is-invalid");
             $("#emailMessage").html('');
         }
+
+        if ($("#email").val() == '') {
+            $("#email").removeClass("is-invalid");
+            $("#emailMessage").html('');
+        }
     });
 
     $("#phone").keyup(function () {
@@ -107,6 +112,11 @@ $(function () {
             $("#phone").addClass("is-invalid");
             $("#phoneMessage").html("<span class='text-danger'>번호 입력 규칙에 맞게 입력해주세요.</span>");
         } else {
+            $("#phone").removeClass("is-invalid");
+            $("#phoneMessage").html('');
+        }
+
+        if ($("#phone").val() == '') {
             $("#phone").removeClass("is-invalid");
             $("#phoneMessage").html('');
         }

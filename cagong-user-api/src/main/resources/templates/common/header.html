@@ -4,7 +4,7 @@
 <header th:fragment="header-frag">
     <!-- navbar start-->
     <nav class="navbar navbar-expand-lg navbar-dark" id="top-navbar">
-        <a class="navbar-brand" href="/home">카공도르</a>
+        <a class="navbar-brand text-bold" href="/home">카공도르</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarTogglerDemo02"
@@ -29,7 +29,7 @@
                 </li>
 
                 <li class="nav-item" th:if="${session.member != null}">
-                    <span th:text="${session.member.account}"></span> 님 환영합니다.
+                    <a class="nav-link text-bold" th:text="${session.member.account}" href="#"></a> 님 환영합니다.
                 </li>
                 <li class="nav-item" th:if="${session.member != null}">
                     <a class="nav-link" href="/logout">로그아웃</a>

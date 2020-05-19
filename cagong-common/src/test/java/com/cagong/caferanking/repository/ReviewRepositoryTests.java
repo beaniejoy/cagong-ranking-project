@@ -2,12 +2,15 @@ package com.cagong.caferanking.repository;
 
 import com.cagong.caferanking.CaferankingCommonApplicationTests;
 import com.cagong.caferanking.domain.entity.Review;
-import com.cagong.caferanking.domain.network.response.ScoreSetApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @Slf4j
 public class ReviewRepositoryTests extends CaferankingCommonApplicationTests {
@@ -46,6 +49,14 @@ public class ReviewRepositoryTests extends CaferankingCommonApplicationTests {
                 .build());
 
         log.info(review.getCafe().getName());
+    }
+
+    @Test
+    public void commentList() {
+        Pageable pageable = PageRequest.of(0, 5);
+        Page<Review> reviews = reviewRepository.findAllByCafeId(2L, pageable);
+
+        log.info(String.valueOf(reviews.getTotalElements()));
     }
 
 }

@@ -29,6 +29,7 @@
         font-size: 3.5rem;
       }
     }
+
     </style>
     <!-- Custom styles for this template -->
     <link href="/css/signin.css" rel="stylesheet">
@@ -40,47 +41,59 @@
 </head>
 
 <body>
-<div class="form-signin">
-    <div class="text-left" style="font: 30px bold">
-        <p>회원 가입</p>
-    </div>
-    <div class="form-group">
-        <label class="text-left" for="account"><b>이름</b></label>
-        <input type="text" class="form-control" id="account" name="account" aria-describedby="accountMessage"
-               placeholder="한글로 공백 없이 입력해주세요.">
-        <small class="form-text text-muted" id="accountMessage"> </small>
+<div class="sign-total-form">
+
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item w-50">
+                <a class="nav-link text-muted" href="/login">로그인</a>
+            </li>
+            <li class="nav-item w-50">
+                <a class="nav-link active text-warning font-weight-bold" href="#">회원가입</a>
+            </li>
+        </ul>
     </div>
 
-    <div class="form-group">
-        <label class="text-left" for="email"><b>이메일</b></label>
-        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailMessage"
-               placeholder="이메일 주소를 입력해주세요.">
-        <small class="form-text text-muted" id="emailMessage"> </small>
-    </div>
-    <div class="form-group">
-        <label class="text-left" for="phone"><b>휴대전화</b></label>
-        <input type="phone" class="form-control" id="phone" name="phoneNumber" aria-describedby="phoneMessage"
-               placeholder="- 없이 숫자만 입력해주세요.">
-        <small class="form-text text-muted" id="phoneMessage"> </small>
-    </div>
-    <div class="form-group">
-        <label class="text-left" for="password"><b>비밀번호</b></label>
-        <input type="password" class="form-control" id="password" name="password"
-               placeholder="비밀번호를 입력해주세요.">
-        <small id="passwordMessage" class="form-text text-muted"> </small>
-    </div>
-    <div class="form-group">
-        <input type="password" class="form-control" id="repassword" name="repassword"
-               placeholder="비밀번호를 다시 한번 입력해주세요.">
-        <small class="form-text text-muted" id="repasswordMessage"> </small>
-    </div>
+    <div class="form-signin">
+        <div class="form-group">
+            <label class="text-left" for="account"><b>이름</b></label>
+            <input type="text" class="form-control" id="account" name="account" aria-describedby="accountMessage"
+                   placeholder="한글로 공백 없이 입력해주세요.">
+            <small class="form-text text-muted" id="accountMessage"> </small>
+        </div>
 
-    <button type="button" class="btn btn-lg btn-primary btn-block" id="saveMember">가입하기</button>
-    <a class="btn btn-lg btn-success btn-block" href="/home">홈으로 이동하기</a>
-    <p class="mt-5 mb-3 text-muted text-center"><strong>Copyright &copy; 2020 <a
-            href="https://github.com/hanbinleejoy">BeanieJoy</a>.</strong> <br>
-        All rights reserved.
-    </p>
+        <div class="form-group">
+            <label class="text-left" for="email"><b>이메일</b></label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailMessage"
+                   placeholder="이메일 주소를 입력해주세요.">
+            <small class="form-text text-muted" id="emailMessage"> </small>
+        </div>
+        <div class="form-group">
+            <label class="text-left" for="phone"><b>휴대전화</b></label>
+            <input type="phone" class="form-control" id="phone" name="phoneNumber" aria-describedby="phoneMessage"
+                   placeholder="- 없이 숫자만 입력해주세요.">
+            <small class="form-text text-muted" id="phoneMessage"> </small>
+        </div>
+        <div class="form-group">
+            <label class="text-left" for="password"><b>비밀번호</b></label>
+            <input type="password" class="form-control" id="password" name="password"
+                   placeholder="비밀번호를 입력해주세요.">
+            <small id="passwordMessage" class="form-text text-muted"> </small>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id="repassword" name="repassword"
+                   placeholder="비밀번호를 다시 한번 입력해주세요.">
+            <small class="form-text text-muted" id="repasswordMessage"> </small>
+        </div>
+
+        <button type="button" class="btn btn-lg btn-warning btn-block text-white font-weight-bold" id="saveMember">
+            가입하기
+        </button>
+        <p class="mt-5 mb-3 text-muted text-center"><strong>Copyright &copy; 2020 <a
+                href="https://github.com/hanbinleejoy">BeanieJoy</a>.</strong> <br>
+            All rights reserved.
+        </p>
+    </div>
 </div>
 <script src="/app/regst.js"></script>
 </body>

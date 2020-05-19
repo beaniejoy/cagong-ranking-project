@@ -1,4 +1,4 @@
-package com.cagong.caferanking.application;
+package com.cagong.caferanking.error;
 
 public class PasswordWrongException extends RuntimeException {
     public PasswordWrongException() {

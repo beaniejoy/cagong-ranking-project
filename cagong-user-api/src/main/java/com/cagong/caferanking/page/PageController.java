@@ -2,7 +2,7 @@ package com.cagong.caferanking.page;
 
 import com.cagong.caferanking.application.CafeService;
 import com.cagong.caferanking.application.ReviewService;
-import com.cagong.caferanking.application.SessionNotAssignedException;
+import com.cagong.caferanking.error.SessionNotAssignedException;
 import com.cagong.caferanking.domain.network.response.SessionApiResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -41,7 +41,11 @@ public class PageController {
 
     // Register Member Page
     @GetMapping("/regst")
-    public String register() {
+    public String register(HttpServletRequest request) {
+        if (request.getSession().getAttribute("member") != null) {
+            return "member/login_handle";
+        }
+
         return "member/regst";
     }
 

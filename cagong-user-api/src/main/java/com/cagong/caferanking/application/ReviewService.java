@@ -37,6 +37,11 @@ public class ReviewService {
     // TODO: CommentService로 아예 분리할 것
     public Map<String, Object> getComments(Long cafeId, Pageable pageable) {
         Page<Review> reviews = reviewRepository.findAllByCafeId(cafeId, pageable);
+        
+        // 카페의 Comment가 한 개도 존재하지 않는 경우
+        if(reviews.getTotalElements() == 0) {
+            throw new CommentNotExistedException(cafeId);
+        }
 
         List<CommentApiResponse> comments = reviews.stream()
                 .map(review -> {
