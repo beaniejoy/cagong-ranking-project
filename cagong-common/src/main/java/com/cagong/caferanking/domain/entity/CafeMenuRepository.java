@@ -1,4 +1,4 @@
-package com.cagong.caferanking.repository;
+package com.cagong.caferanking.domain.entity;
 
 import com.cagong.caferanking.domain.entity.CafeMenu;
 import org.springframework.data.jpa.repository.JpaRepository;

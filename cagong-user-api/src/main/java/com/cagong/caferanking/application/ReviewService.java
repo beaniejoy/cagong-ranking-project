@@ -1,15 +1,15 @@
 package com.cagong.caferanking.application;
 
 import com.cagong.caferanking.domain.entity.Review;
-import com.cagong.caferanking.domain.entity.ScoreSet;
 import com.cagong.caferanking.domain.network.response.CommentApiResponse;
 import com.cagong.caferanking.domain.network.response.ReviewApiResponse;
-import com.cagong.caferanking.page.Pagination;
-import com.cagong.caferanking.repository.CafeRepository;
-import com.cagong.caferanking.repository.ReviewRepository;
-import com.cagong.caferanking.repository.ScoreSetRepository;
-import com.cagong.caferanking.repository.UserRepository;
-import lombok.AllArgsConstructor;
+import com.cagong.caferanking.domain.Pagination;
+import com.cagong.caferanking.domain.entity.CafeRepository;
+import com.cagong.caferanking.domain.entity.ReviewRepository;
+import com.cagong.caferanking.domain.entity.ScoreSetRepository;
+import com.cagong.caferanking.domain.entity.UserRepository;
+import com.cagong.caferanking.interfaces.dto.DataWithPageResponseDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,24 +18,23 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ReviewService {
 
-    private ReviewRepository reviewRepository;
+    private final ReviewRepository reviewRepository;
 
-    private CafeRepository cafeRepository;
+    private final CafeRepository cafeRepository;
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    private ScoreSetRepository scoreSetRepository;
+    private final ScoreSetRepository scoreSetRepository;
 
     // TODO: CommentService로 아예 분리할 것
-    public Map<String, Object> getComments(Long cafeId, Pageable pageable) {
+    public DataWithPageResponseDto getComments(Long cafeId, Pageable pageable) {
         Page<Review> reviews = reviewRepository.findAllByCafeId(cafeId, pageable);
         
         // 카페의 Comment가 한 개도 존재하지 않는 경우
@@ -43,7 +42,7 @@ public class ReviewService {
             throw new CommentNotExistedException(cafeId);
         }
 
-        List<CommentApiResponse> comments = reviews.stream()
+        List<CommentApiResponse> commentList = reviews.stream()
                 .map(review -> {
                     return CommentApiResponse.builder()
                             .id(review.getId())
@@ -60,11 +59,11 @@ public class ReviewService {
                 .currentElements(reviews.getNumberOfElements())
                 .build();
 
-        Map<String, Object> commentPageMap = new HashMap<>();
-        commentPageMap.put("comments", comments);
-        commentPageMap.put("page", pagination);
 
-        return commentPageMap;
+        return DataWithPageResponseDto.builder()
+                .data(commentList)
+                .pagination(pagination)
+                .build();
     }
 
     public ReviewApiResponse getReview(Long cafeId, Long userId) {

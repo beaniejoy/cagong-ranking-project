@@ -1,14 +1,8 @@
 package com.cagong.caferanking.application;
 
 import com.cagong.caferanking.domain.entity.Cafe;
-import com.cagong.caferanking.domain.entity.CafeMenu;
-import com.cagong.caferanking.domain.entity.Review;
-import com.cagong.caferanking.domain.entity.ScoreSet;
 import com.cagong.caferanking.error.CafeNotFoundException;
-import com.cagong.caferanking.repository.CafeMenuRepository;
-import com.cagong.caferanking.repository.CafeRepository;
-import com.cagong.caferanking.repository.ReviewRepository;
-import com.cagong.caferanking.repository.ScoreSetRepository;
+import com.cagong.caferanking.domain.entity.CafeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

@@ -2,7 +2,7 @@ package com.cagong.caferanking.application;
 
 import com.cagong.caferanking.domain.entity.ScoreSet;
 import com.cagong.caferanking.error.ScoreSetNotFoundException;
-import com.cagong.caferanking.repository.ScoreSetRepository;
+import com.cagong.caferanking.domain.entity.ScoreSetRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

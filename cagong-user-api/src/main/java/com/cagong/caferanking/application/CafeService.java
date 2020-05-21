@@ -2,49 +2,46 @@ package com.cagong.caferanking.application;
 
 import com.cagong.caferanking.domain.entity.Cafe;
 import com.cagong.caferanking.domain.entity.CafeMenu;
-import com.cagong.caferanking.domain.entity.Review;
 import com.cagong.caferanking.domain.entity.ScoreSet;
 import com.cagong.caferanking.domain.network.response.CafeApiResponse;
 import com.cagong.caferanking.domain.network.response.CafeMenuApiResponse;
-import com.cagong.caferanking.domain.network.response.ReviewApiResponse;
 import com.cagong.caferanking.domain.network.response.ScoreSetApiResponse;
 import com.cagong.caferanking.error.CafeNotFoundException;
-import com.cagong.caferanking.page.Pagination;
-import com.cagong.caferanking.repository.CafeRepository;
-import lombok.AllArgsConstructor;
+import com.cagong.caferanking.interfaces.dto.DataWithPageResponseDto;
+import com.cagong.caferanking.domain.Pagination;
+import com.cagong.caferanking.domain.entity.CafeRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CafeService {
 
-    private CafeRepository cafeRepositoy;
+    private final CafeRepository cafeRepository;
 
-    private CafeMenuService cafeMenuService;
+    private final CafeMenuService cafeMenuService;
 
-    private ReviewService reviewService;
+    private final ReviewService reviewService;
 
-    private ScoreSetService scoreSetService;
+    private final ScoreSetService scoreSetService;
 
     public CafeApiResponse countAll() {
-        Long count = cafeRepositoy.count();
+        Long count = cafeRepository.count();
 
         return CafeApiResponse.builder()
                 .count(count)
                 .build();
     }
 
-    public Map<String, Object> getCafes(String phrase, Pageable pageable) {
-        Page<Cafe> cafes = cafeRepositoy.findAllByNameContaining(phrase, pageable);
+    public DataWithPageResponseDto getCafes(String phrase, Pageable pageable) {
+        Page<Cafe> cafes = cafeRepository.findAllByNameContaining(phrase, pageable);
 
         List<CafeApiResponse> cafeApiResponseList = cafes.stream()
                 .map(this::response)
@@ -57,15 +54,14 @@ public class CafeService {
                 .currentElements(cafes.getNumberOfElements())
                 .build();
 
-        Map<String, Object> cafePageMap = new HashMap<>();
-        cafePageMap.put("cafes", cafeApiResponseList);
-        cafePageMap.put("page", pagination);
-
-        return cafePageMap;
+        return DataWithPageResponseDto.builder()
+                .data(cafeApiResponseList)
+                .pagination(pagination)
+                .build();
     }
 
     public CafeApiResponse getCafe(Long cafeId) {
-        Cafe cafe = cafeRepositoy.findById(cafeId)
+        Cafe cafe = cafeRepository.findById(cafeId)
                 .orElseThrow(() -> new CafeNotFoundException(cafeId));
 
         CafeApiResponse cafeApiResponse = response(cafe);
@@ -73,16 +69,9 @@ public class CafeService {
         // CafeMenuList
         List<CafeMenu> cafeMenuList = cafe.getCafeMenuList();
         List<CafeMenuApiResponse> cafeMenuApiResponseList = cafeMenuList.stream()
-                .map(cafeMenu -> cafeMenuService.response(cafeMenu))
+                .map(cafeMenuService::response)
                 .collect(Collectors.toList());
         cafeApiResponse.setCafeMenuList(cafeMenuApiResponseList);
-
-        // ReviewList
-        List<Review> reviewList = cafe.getReviewList();
-        List<ReviewApiResponse> reviewApiResponseList = reviewList.stream()
-                .map(review -> reviewService.response(review))
-                .collect(Collectors.toList());
-        cafeApiResponse.setReviewList(reviewApiResponseList);
 
         // ScoreSet
         ScoreSet scoreSet = cafe.getScoreSet();

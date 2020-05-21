@@ -24,7 +24,7 @@
 
                     <div class="col mb-4" th:each="cafe : ${cafes}">
                         <div class="card" th:object="${cafe}">
-                            <a th:href="@{/cafes/{cafeId}(cafeId=${cafe.id})}">
+                            <a th:href="@{/cafes/{cafeId}/detail(cafeId=${cafe.id})}">
                                 <img th:src="*{imgUrl}" class="card-img-top" alt="alternative">
                             </a>
                             <div class="card-body">

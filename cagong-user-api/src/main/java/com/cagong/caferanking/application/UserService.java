@@ -6,7 +6,7 @@ import com.cagong.caferanking.domain.network.response.UserApiResponse;
 import com.cagong.caferanking.error.EmailExistedException;
 import com.cagong.caferanking.error.EmailNotExistedException;
 import com.cagong.caferanking.error.PasswordWrongException;
-import com.cagong.caferanking.repository.UserRepository;
+import com.cagong.caferanking.domain.entity.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

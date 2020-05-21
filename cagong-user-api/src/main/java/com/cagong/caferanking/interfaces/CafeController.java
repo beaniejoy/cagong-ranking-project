@@ -1,36 +1,36 @@
 package com.cagong.caferanking.interfaces;
 
 import com.cagong.caferanking.application.CafeService;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.cagong.caferanking.domain.network.response.CafeApiResponse;
+import com.cagong.caferanking.interfaces.dto.DataWithPageResponseDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @RequestMapping("/cafes")
+@RequiredArgsConstructor
+@RestController
 public class CafeController {
 
-    @Autowired
-    private CafeService cafeService;
+    private final CafeService cafeService;
 
-    @GetMapping("/search")
-    public String list(Model model,
-                       @RequestParam("phrase") String phrase,
-                       @PageableDefault(sort = "id", direction = Sort.Direction.ASC, size = 3) Pageable pageable) {
-        model.addAttribute("cafes", cafeService.getCafes(phrase, pageable).get("cafes"));
-        model.addAttribute("page", cafeService.getCafes(phrase, pageable).get("page"));
-        model.addAttribute("phrase", phrase);
-        return "search";
+    @GetMapping(value = "", produces = "application/json;charset=UTF-8")
+    public DataWithPageResponseDto list(@RequestParam("phrase") String phrase,
+                                        @PageableDefault(sort = "id", direction = Sort.Direction.ASC, size = 3) Pageable pageable) {
+
+        return cafeService.getCafes(phrase, pageable);
     }
 
-    @GetMapping("/{cafeId}")
-    public String detail(Model model, @PathVariable("cafeId") Long cafeId) {
-        model.addAttribute("cafe", cafeService.getCafe(cafeId));
-        return "view/view";
+    @GetMapping(value = "/{cafeId}", produces = "application/json;charset=UTF-8")
+    public CafeApiResponse detail(@PathVariable("cafeId") Long cafeId) {
+        return cafeService.getCafe(cafeId);
     }
 
 }

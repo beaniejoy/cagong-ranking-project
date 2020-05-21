@@ -2,7 +2,7 @@ package com.cagong.caferanking.application;
 
 import com.cagong.caferanking.domain.entity.CafeMenu;
 import com.cagong.caferanking.domain.network.response.CafeMenuApiResponse;
-import com.cagong.caferanking.repository.CafeMenuRepository;
+import com.cagong.caferanking.domain.entity.CafeMenuRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +26,7 @@ public class CafeMenuService {
                 .id(cafeMenu.getId())
                 .name(cafeMenu.getName())
                 .price(cafeMenu.getPrice())
+                .cafeId(cafeMenu.getCafe().getId())
                 .build();
     }
 }

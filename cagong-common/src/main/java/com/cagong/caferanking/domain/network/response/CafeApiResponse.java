@@ -33,8 +33,6 @@ public class CafeApiResponse {
 
     private List<CafeMenuApiResponse> cafeMenuList;
 
-    private List<ReviewApiResponse> reviewList;
-
     private ScoreSetApiResponse scoreSet;
 
     private Long count;

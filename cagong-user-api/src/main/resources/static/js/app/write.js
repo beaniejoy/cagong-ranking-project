@@ -1,12 +1,4 @@
 $(function() {
-//		$("#cmm").focus();
-
-//		$('.starRev span').click(function() {
-//			$(this).parent().children('span').removeClass('on');
-//			$(this).addClass('on').prevAll('span').addClass('on');
-//			return false;
-//		});
-
 		$("#cancel").click(function(){
 			history.back(-1);
 		});
@@ -14,7 +6,6 @@ $(function() {
 		$("#saveCafe").click(function() {
 			f.submit();
 		});
-
 
 		$(".mood").on('click', function() {
 			var idx = $(this).index();

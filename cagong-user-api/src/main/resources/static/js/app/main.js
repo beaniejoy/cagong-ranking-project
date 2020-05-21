@@ -20,7 +20,7 @@ $(function() {
 								let shopName = "#shop" + i;
 								let rateId = "#rate-no" + i;
 								$(linkName).attr('href',
-										'/cafes/' + data[i].cafeId);
+										'/cafes/' + data[i].cafeId + '/detail');
 								$(imgName).attr('src', url);
 								$(shopName).html(name);
 								$(rateId).html(value);

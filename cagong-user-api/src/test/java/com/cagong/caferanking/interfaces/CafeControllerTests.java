@@ -1,28 +1,38 @@
 package com.cagong.caferanking.interfaces;
 
 import com.cagong.caferanking.application.CafeService;
-import com.cagong.caferanking.domain.entity.Cafe;
+import com.cagong.caferanking.domain.network.response.CafeApiResponse;
+import com.cagong.caferanking.domain.network.response.CafeMenuApiResponse;
+import com.cagong.caferanking.domain.network.response.ReviewApiResponse;
+import com.cagong.caferanking.domain.network.response.ScoreSetApiResponse;
 import com.cagong.caferanking.error.CafeNotFoundException;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import com.cagong.caferanking.interfaces.dto.DataWithPageResponseDto;
+import com.cagong.caferanking.domain.Pagination;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(SpringExtension.class)
-@WebMvcTest(CafeController.class)
-class CafeControllerTests {
+@RunWith(SpringRunner.class)
+@WebMvcTest(controllers = CafeController.class)
+public class CafeControllerTests {
 
     @Autowired
     private MockMvc mvc;
@@ -30,88 +40,113 @@ class CafeControllerTests {
     @MockBean
     private CafeService cafeService;
 
-    // 기존 Cafe - id: 1, name: Starbucks, address: Busan
-    // 추가 Cafe - id: 2, name: Hollys, address: Seoul
-
     @Test
-    public void list() throws Exception {
-        List<Cafe> cafes = new ArrayList<>();
-        cafes.add(Cafe.builder()
-                .name("Starbucks")
-                .address("Busan")
-                .build());
+    public void 카페_리스트_조회() throws Exception {
 
-//        given(cafeService.getCafes()).willReturn(cafes);
-//
-//        mvc.perform(get("/cafes"))
-//                .andExpect(status().isOk())
-//                .andExpect(content().string(
-//                        containsString("\"name\":\"Starbucks\"")))
-//                .andExpect(content().string(
-//                        containsString("\"address\":\"Busan\"")));
+        List<CafeApiResponse> cafeApiResponseList = new ArrayList<>();
+
+        cafeApiResponseList.add(CafeApiResponse.builder()
+                .id(1L)
+                .name("스타벅스 1호점")
+                .address("을지로")
+                .imgUrl("/img/cafe1.jpg")
+                .opertimeStart(LocalTime.now())
+                .opertimeEnd(LocalTime.now())
+                .phoneNumber("010-2222-1111")
+                .build()
+        );
+
+        Pagination pagination = Pagination.builder()
+                .currentElements(1)
+                .currentPage(1)
+                .totalElements(1L)
+                .totalPages(1)
+                .build();
+
+        Pageable pageable = PageRequest.of(0, 3, Sort.Direction.ASC, "id");
+
+        DataWithPageResponseDto cafePageDto = DataWithPageResponseDto.builder()
+                .data(cafeApiResponseList)
+                .pagination(pagination)
+                .build();
+
+        given(cafeService.getCafes("스타벅스", pageable)).willReturn(cafePageDto);
+
+        mvc.perform(get("/cafes")
+                .param("phrase", "스타벅스"))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(
+                        jsonPath("$.data[0].id", is(1))
+                );
+        ;
     }
 
-    // 존재하는 카페인 경우
-//    @Test
-//    public void detailWithExisted() throws Exception {
-//        Cafe cafe = Cafe.builder()
-//                .id(1L)
-//                .name("Starbucks")
-//                .address("Busan")
-//                .build();
-//
-//        CafeMenu cafeMenu = CafeMenu.builder()
-//                .cafeId(1L)
-//                .name("Americano")
-//                .build();
-//
-//        Review review = Review.builder()
-//                .cafeId(1L)
-//                .userName("Joy")
-//                .mood(3.5)
-//                .light(4.5)
-//                .price(3.5)
-//                .taste(1.5)
-//                .comment("It's so Good!")
-//                .build();
-//
-//        ScoreSet scoreSet = ScoreSet.builder()
-//                .cafeId(1L)
-//                .light(4.5)
-//                .mood(3.5)
-//                .price(2.5)
-//                .taste(1.5)
-//                .build();
-//
-//        cafe.setCafeMenus(Collections.singletonList(cafeMenu));
-//        cafe.setReviews(Collections.singletonList(review));
-//        cafe.setScoreSet(scoreSet);
-//
-//        given(cafeService.getCafe(1L)).willReturn(cafe);
-//
-//        mvc.perform(get("/cafes/1"))
-//                .andExpect(status().isOk())
-//                .andExpect(content().string(
-//                        containsString("\"id\":1")))
-//                .andExpect(content().string(
-//                        containsString("\"name\":\"Starbucks\"")))
-//                .andExpect(content().string(
-//                        containsString("\"address\":\"Busan\"")))
-//                .andExpect(content().string(
-//                        containsString("\"name\":\"Americano\"")))
-//                .andExpect(content().string(
-//                        containsString("\"comment\":\"It's so Good!\"")));
-//    }
-
-    // 존재하는 카페인 경우
     @Test
-    public void detailWithNotExisted() throws Exception {
+    public void 카페_상세정보_조회_Found() throws Exception {
+
+        CafeApiResponse cafeApiResponse = CafeApiResponse.builder()
+                .id(1L)
+                .name("스타벅스 1호점")
+                .address("을지로")
+                .imgUrl("/img/cafe1.jpg")
+                .opertimeStart(LocalTime.now())
+                .opertimeEnd(LocalTime.now())
+                .phoneNumber("010-2222-1111")
+                .build();
+
+        List<CafeMenuApiResponse> cafeMenuApiResponseList = new ArrayList<>();
+        cafeMenuApiResponseList.add(CafeMenuApiResponse.builder()
+                .id(100L)
+                .name("아메리카노")
+                .price(6000)
+                .cafeId(1L)
+                .build());
+
+        cafeApiResponse.setCafeMenuList(cafeMenuApiResponseList);
+
+//        List<ReviewApiResponse> reviewApiResponseList = new ArrayList<>();
+//        reviewApiResponseList.add(ReviewApiResponse.builder()
+//                .id(1000L)
+//                .cafeName("스타벅스 1호점")
+//                .userName("beaniejoy")
+//                .mood(4.5)
+//                .light(3.5)
+//                .price(1.5)
+//                .taste(2.5)
+//                .comment("맛있다!")
+//                .build())
+//        ;
+//
+//        cafeApiResponse.setReviewList(reviewApiResponseList);
+
+        cafeApiResponse.setScoreSet(ScoreSetApiResponse.builder()
+                .id(50L)
+                .cafeName("스타벅스 1호점")
+                .cafeId(1L)
+                .mood(2.3)
+                .light(1.7)
+                .price(4.23)
+                .taste(2.467)
+                .build())
+        ;
+
+        given(cafeService.getCafe(1L)).willReturn(cafeApiResponse);
+
+        mvc.perform(get("/cafes/1"))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(
+                        jsonPath("$.reviewList[0].cafeName", is("스타벅스 1호점"))
+                );
+    }
+
+    @Test
+    public void 카페_상세정보_조회_NotFound() throws Exception {
         given(cafeService.getCafe(404L))
                 .willThrow(new CafeNotFoundException(404L));
 
         mvc.perform(get("/cafes/404"))
-                .andExpect(status().isNotFound())
-                .andExpect(content().string("{}"));
+                .andExpect(status().isNotFound());
     }
-
 }
