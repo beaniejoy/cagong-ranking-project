@@ -5,6 +5,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**
+**/src/main/resources/static/img/
 
 ### STS ###
 .apt_generated
@@ -31,4 +32,9 @@ out/
 
 ### VS Code ###
 .vscode/
-**/src/main/resources/static/img/
+
+cagong-admin-api/src/main/resources/static/
+cagong-admin-api/src/main/resources/templates/
+cagong-admin-api/src/test/resources/
+cagong-common/src/test/resources/
+cagong-user-api/src/test/resources/
