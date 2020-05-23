@@ -13,14 +13,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
-@Entity
-@Builder
 @Accessors(chain = true)
-@Data
+@Builder
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 @ToString(exclude = {"cafe", "user"})
+@EntityListeners(AuditingEntityListener.class)
+@Entity
 public class Review {
 
     @Id
@@ -28,8 +28,11 @@ public class Review {
     private Long id;
 
     private Double mood;
+
     private Double light;
+
     private Double price;
+
     private Double taste;
 
     @NotEmpty
@@ -56,4 +59,12 @@ public class Review {
     @JsonIgnore
     @ManyToOne
     private User user;
+
+    public void updateReview(Double mood, Double light, Double price, Double taste, String comment) {
+        this.mood = mood;
+        this.light = light;
+        this.price = price;
+        this.taste = taste;
+        this.comment = comment;
+    }
 }

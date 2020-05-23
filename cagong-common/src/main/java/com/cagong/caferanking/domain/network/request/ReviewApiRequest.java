@@ -1,5 +1,9 @@
 package com.cagong.caferanking.domain.network.request;
 
+import com.cagong.caferanking.domain.entity.Cafe;
+import com.cagong.caferanking.domain.entity.CafeRepository;
+import com.cagong.caferanking.domain.entity.Review;
+import com.cagong.caferanking.domain.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,4 +29,18 @@ public class ReviewApiRequest {
 
     private String comment;
 
+    private Long userId;
+
+    public Review toEntity(Cafe cafe, User user) {
+        return Review.builder()
+                .cafe(cafe)
+                .user(user)
+                .mood(mood)
+                .light(light)
+                .price(price)
+                .taste(taste)
+                .comment(comment)
+                .build()
+                ;
+    }
 }

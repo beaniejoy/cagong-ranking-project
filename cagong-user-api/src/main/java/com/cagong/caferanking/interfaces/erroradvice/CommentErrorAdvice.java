@@ -9,6 +9,6 @@ public class CommentErrorAdvice {
 
     @ExceptionHandler(CommentNotExistedException.class)
     public String handleNotExisted(){
-        return "view/comment_no";
+        return "view/comment-no";
     }
 }

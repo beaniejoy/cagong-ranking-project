@@ -21,19 +21,17 @@
             <div class="col-lg-12">
                 <h3><span th:text="${review.cafeName}"></span> 리뷰</h3>
                 <br>
-                <form name="f" method="post" th:action="@{/cafes/{cafeId}/reviews(cafeId=${cafeId})}">
+                <form>
                     <div class="form-group row">
                         <label for="reviewer" class="col-sm-2 col-form-label">평가자</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="reviewer"
-                                   name="reviewer" readonly="readonly" th:value="${review.userName}">
+                            <input type="text" class="form-control" id="reviewer" readonly="readonly" th:value="${member.account}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="shop" class="col-sm-2 col-form-label">평가매장</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="shop" name="shop"
-                                   readonly="readonly" th:value="${review.cafeName}">
+                            <input type="text" class="form-control" id="shop" readonly="readonly" th:value="${review.cafeName}">
                         </div>
                     </div>
                     <br>
@@ -82,7 +80,7 @@
                         <div class='form-group row'>
                             <div class="col-5">
                                 <fieldset>
-                                    <select class='form-control' name="valueA" id="valueA">
+                                    <select class='form-control' id="valueA">
                                         <option value="6am">오전 6 : 00</option>
                                         <option value="7am">오전 7 : 00</option>
                                         <option value="8am">오전 8 : 00</option>
@@ -110,7 +108,7 @@
                             </div>
                             <div class="col-5">
                                 <fieldset>
-                                    <select class='form-control' name="valueB" id="valueB">
+                                    <select class='form-control' id="valueB">
                                         <option value="6am">오전 6 : 00</option>
                                         <option value="7am">오전 7 : 00</option>
                                         <option value="8am">오전 8 : 00</option>
@@ -142,19 +140,21 @@
 
                     <div class="form-group">
                         <label for="comment">한줄 평가</label>
-                        <textarea class="form-control" id="comment" name="comment" rows="3" th:text="${review.comment}"></textarea>
+                        <textarea class="form-control" id="comment" rows="3" th:text="${review.comment}"></textarea>
                     </div>
-                    <input type="hidden" name="mood" id="moodRate" th:value="${review.mood} * 2 - 1"/>
-                    <input type="hidden" name="light" id="lightRate" th:value="${review.mood} * 2 - 1"/>
-                    <input type="hidden" name="price" id="priceRate" th:value="${review.mood} * 2 - 1"/>
-                    <input type="hidden" name="taste" id="tasteRate" th:value="${review.mood} * 2 - 1"/>
+                    <input type="hidden" id="mood-rate" th:value="${review.mood} * 2 - 1"/>
+                    <input type="hidden" id="light-rate" th:value="${review.light} * 2 - 1"/>
+                    <input type="hidden" id="price-rate" th:value="${review.price} * 2 - 1"/>
+                    <input type="hidden" id="taste-rate" th:value="${review.taste} * 2 - 1"/>
+                    <input type="hidden" id="review-id" th:value="${review.id}"/>
+                    <input type="hidden" id="user-id" th:value="${member.id}"/>
+                    <input type="hidden" id="cafe-id" th:value="${cafeId}"/>
                 </form>
                 <br>
                 <div class='text-right'>
-                    <button type="button"
-                            class="btn btn-secondary btn-md" id="cancel">취소
+                    <button type="button" class="btn btn-secondary btn-md" id="cancel">취소</button>
+                    <button type="button" class="btn btn-success btn-md" id="btn-update">수정 완료
                     </button>
-                    <button type="button" class="btn btn-primary btn-md" id="btn-update" th:value="${cafeId}">등록</button>
                 </div>
 
 
@@ -163,7 +163,7 @@
     </div>
     <!-- main end -->
 
-<script src="/js/app/write.js"></script>
+    <script src="/js/app/review.js"></script>
 
 </section>
 

@@ -6,13 +6,13 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
-@Entity
-@Data
-@Builder
+@Getter
 @Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(exclude = {"cafe"})
+@Builder
+@Entity
 public class ScoreSet {
 
     @Id
@@ -30,4 +30,12 @@ public class ScoreSet {
     @JsonIgnore
     @OneToOne
     private Cafe cafe;
+
+    public void updateAverage(Object changed) {
+        Object[] avgResultSet = (Object[]) changed;
+        this.mood = (Double) avgResultSet[0];
+        this.light = (Double) avgResultSet[1];
+        this.price = (Double) avgResultSet[2];
+        this.taste = (Double) avgResultSet[3];
+    }
 }

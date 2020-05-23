@@ -2,8 +2,10 @@ package com.cagong.caferanking.page;
 
 import com.cagong.caferanking.application.CafeService;
 import com.cagong.caferanking.application.ReviewService;
+import com.cagong.caferanking.domain.network.response.CafeApiResponse;
 import com.cagong.caferanking.domain.network.response.SessionApiResponse;
 import com.cagong.caferanking.error.SessionNotAssignedException;
+import com.cagong.caferanking.interfaces.dto.DataWithPageResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -54,25 +56,56 @@ public class PageController {
 
     // Search Page
     @GetMapping("/cafes/search")
-    public String list(Model model,
-                       @RequestParam("phrase") String phrase,
-                       @PageableDefault(sort = "id", direction = Sort.Direction.ASC, size = 3) Pageable pageable) {
-        model.addAttribute("cafes", cafeService.getCafes(phrase, pageable).getData());
-        model.addAttribute("page", cafeService.getCafes(phrase, pageable).getPagination());
+    public String getCafeList(
+            HttpServletRequest request,
+            Model model,
+            @RequestParam("phrase") String phrase,
+            @PageableDefault(sort = "id", direction = Sort.Direction.ASC, size = 3) Pageable pageable) {
+
+        HttpSession session = request.getSession();
+
+        SessionApiResponse memInfo = (SessionApiResponse) session.getAttribute("member");
+
+        DataWithPageResponseDto cafesWithPagination;
+
+        if (memInfo == null) {
+            cafesWithPagination = cafeService.getCafes(phrase, pageable);
+        } else {
+            cafesWithPagination = cafeService.getCafesWithSession(memInfo.getId(), phrase, pageable);
+        }
+
+        model.addAttribute("cafes", cafesWithPagination.getData());
+        model.addAttribute("page", cafesWithPagination.getPagination());
         model.addAttribute("phrase", phrase);
         return "search";
     }
 
     // Cafe's Detail Page
     @GetMapping("/cafes/{cafeId}/detail")
-    public String detail(Model model, @PathVariable("cafeId") Long cafeId) {
-        model.addAttribute("cafe", cafeService.getCafe(cafeId));
+    public String detail(
+            HttpServletRequest request,
+            Model model,
+            @PathVariable("cafeId") Long cafeId) {
+
+        HttpSession session = request.getSession();
+
+        SessionApiResponse memInfo = (SessionApiResponse) session.getAttribute("member");
+
+        CafeApiResponse cafeApiResponse;
+
+        if (memInfo == null) {
+            cafeApiResponse = cafeService.getCafe(cafeId);
+        } else {
+            cafeApiResponse = cafeService.getCafeWithSession(cafeId, memInfo.getId());
+        }
+
+        model.addAttribute("cafe", cafeApiResponse);
         return "view/detail";
     }
 
     // Comment List Page in a Cafe's Detail Page
-    @GetMapping("/cafes/{cafeId}/comments")
-    public String list(Model model,
+    @GetMapping("/cafes/{cafeId}/comment_list")
+    public String commentList(Model model,
                        @PathVariable Long cafeId,
                        @PageableDefault(sort = "id", direction = Sort.Direction.ASC, size = 10) Pageable pageable) {
         model.addAttribute("comments", reviewService.getComments(cafeId, pageable).getData());
@@ -83,7 +116,10 @@ public class PageController {
 
     // Review Write Page
     @GetMapping("/cafes/{cafeId}/write")
-    public String reviewSave(HttpServletRequest request, Model model, @PathVariable Long cafeId) {
+    public String reviewSave(
+            HttpServletRequest request,
+            Model model,
+            @PathVariable Long cafeId) {
 
         HttpSession session = request.getSession();
         // Login Member Inf.
@@ -93,18 +129,31 @@ public class PageController {
             throw new SessionNotAssignedException();
         }
 
-        model.addAttribute("review",
-                reviewService.getReview(cafeId, memInfo.getId()));
-
+        model.addAttribute("cafe", cafeService.getCafe(cafeId));
+        model.addAttribute("member", memInfo);
         model.addAttribute("cafeId", cafeId);
 
-        return "review/write";
+        return "review/review-save";
     }
 
+    // Review Update Page
     @GetMapping("/cafes/{cafeId}/update")
     public String reviewUpdate(HttpServletRequest request,
                                Model model,
                                @PathVariable Long cafeId) {
+
+        HttpSession session = request.getSession();
+        // Login Member Inf.
+        SessionApiResponse memInfo = (SessionApiResponse) session.getAttribute("member");
+
+        if (memInfo == null) {
+            throw new SessionNotAssignedException();
+        }
+
+        model.addAttribute("review", reviewService.getReview(cafeId, memInfo.getId()));
+        model.addAttribute("member", memInfo);
+        model.addAttribute("cafeId", cafeId);
+
         return "review/review-update";
     }
 

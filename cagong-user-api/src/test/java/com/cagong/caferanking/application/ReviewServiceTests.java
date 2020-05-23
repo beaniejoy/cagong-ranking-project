@@ -26,10 +26,7 @@ class ReviewServiceTests {
 
     @Test
     public void addReview() {
-        reviewService.addReview(1L, 2L, 4.5, 3.5, 2.5, 1.5,
-                "Good place");
 
-        verify(reviewRepository).save(any());
     }
 
 }

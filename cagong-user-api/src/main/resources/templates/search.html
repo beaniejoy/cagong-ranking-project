@@ -32,7 +32,8 @@
                                 <p class="card-text"></p>
                             </div>
                             <div class="card-body">
-                                <a th:href="@{/cafes/{cafeId}/write(cafeId=${cafe.id})}" class="card-link">평가하기</a>
+                                <a class="btn btn-success" th:if="*{isWrite}" th:href="@{/cafes/{cafeId}/update(cafeId=${cafe.id})}">수정하기</a>
+                                <a class="btn btn-primary" th:if="!*{isWrite}" th:href="@{/cafes/{cafeId}/write(cafeId=${cafe.id})}">평가하기</a>
                             </div>
                         </div>
                     </div>

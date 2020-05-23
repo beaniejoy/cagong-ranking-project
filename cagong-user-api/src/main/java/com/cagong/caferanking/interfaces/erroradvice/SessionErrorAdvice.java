@@ -17,8 +17,9 @@ public class SessionErrorAdvice {
         return "1";
     }
 
+    // TODO 여기 다시한번 봐보자
     @ExceptionHandler(SessionNotAssignedException.class)
     public String handleNotAssigned() throws IOException {
-        return "review/write_handle";
+        return "review/write-handle";
     }
 }

@@ -55,12 +55,11 @@
         </div>
         <div class="text-right">
             <!--            TODO: 사용자의 상태에 따라 수정하기/평가하기로 나눌 것-->
-            <a th:href="@{/cafes/{cafeId}/write(cafeId=${cafe.id})}"
-               class="btn btn-outline-info">평가하기</a>
-
+            <a class="btn btn-outline-success" th:if="*{isWrite}" th:href="@{/cafes/{cafeId}/update(cafeId=${cafe.id})}">수정하기</a>
+            <a class="btn btn-outline-primary" th:if="!*{isWrite}" th:href="@{/cafes/{cafeId}/write(cafeId=${cafe.id})}">평가하기</a>
         </div>
 
-        <iframe th:attr="src=@{/cafes/{cafeId}/comments(cafeId=${cafe.id})}"
+        <iframe th:attr="src=@{/cafes/{cafeId}/comment_list(cafeId=${cafe.id})}"
                 width="100%" height="500px" frameborder="0"></iframe>
     </div>
 </section>

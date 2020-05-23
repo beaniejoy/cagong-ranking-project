@@ -61,7 +61,7 @@ $(function () {
                     switch (result) {
                         case 0:
                             alert("성공적으로 로그인이 되었습니다.");
-                            history.back(-1);
+                            window.location.href = '/home';
                             break;
                         case 1:
                             alert("로그인 정보가 일치하지 않습니다.");

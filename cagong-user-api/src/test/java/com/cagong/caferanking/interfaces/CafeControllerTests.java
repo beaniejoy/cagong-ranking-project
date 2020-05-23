@@ -137,7 +137,7 @@ public class CafeControllerTests {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(
-                        jsonPath("$.reviewList[0].cafeName", is("스타벅스 1호점"))
+                        jsonPath("$.cafeMenuList[0].cafeId", is(1))
                 );
     }
 

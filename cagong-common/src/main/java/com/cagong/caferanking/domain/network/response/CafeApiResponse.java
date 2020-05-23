@@ -37,4 +37,14 @@ public class CafeApiResponse {
 
     private Long count;
 
+    // member session 정보 있을 경우에 카페에 대한 review 작성 여부 조회
+    private Boolean isWrite;
+
+    public void setIsWriteToFalse() {
+        this.isWrite = false;
+    }
+
+    public void setIsWriteToTrue() {
+        this.isWrite = true;
+    }
 }

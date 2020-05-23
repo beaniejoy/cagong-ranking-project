@@ -22,8 +22,9 @@ public class CafeController {
     private final CafeService cafeService;
 
     @GetMapping(value = "", produces = "application/json;charset=UTF-8")
-    public DataWithPageResponseDto list(@RequestParam("phrase") String phrase,
-                                        @PageableDefault(sort = "id", direction = Sort.Direction.ASC, size = 3) Pageable pageable) {
+    public DataWithPageResponseDto list(
+            @RequestParam("phrase") String phrase,
+            @PageableDefault(sort = "id", direction = Sort.Direction.ASC, size = 3) Pageable pageable) {
 
         return cafeService.getCafes(phrase, pageable);
     }

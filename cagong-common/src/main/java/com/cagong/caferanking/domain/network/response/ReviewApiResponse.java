@@ -29,5 +29,4 @@ public class ReviewApiResponse {
     private Double taste;
 
     private String comment;
-
 }
