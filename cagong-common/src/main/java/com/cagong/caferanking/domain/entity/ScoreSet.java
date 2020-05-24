@@ -7,7 +7,6 @@ import lombok.experimental.Accessors;
 import javax.persistence.*;
 
 @Getter
-@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(exclude = {"cafe"})

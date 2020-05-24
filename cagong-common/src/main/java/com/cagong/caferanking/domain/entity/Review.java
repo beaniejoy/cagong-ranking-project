@@ -13,15 +13,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
-@Accessors(chain = true)
-@Builder
 @Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(exclude = {"cafe", "user"})
-@EntityListeners(AuditingEntityListener.class)
 @Entity
-public class Review {
+public class Review extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,18 +35,6 @@ public class Review {
 
     @NotEmpty
     private String comment;
-
-    @CreatedDate
-    private LocalDateTime createdAt;
-
-    @CreatedBy
-    private String createdBy;
-
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
-
-    @LastModifiedBy
-    private String updatedBy;
 
     // Review : Cafe = N : 1
     @JsonIgnore

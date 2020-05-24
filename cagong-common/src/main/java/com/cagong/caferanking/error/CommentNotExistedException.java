@@ -1,4 +1,4 @@
-package com.cagong.caferanking.application;
+package com.cagong.caferanking.error;
 
 public class CommentNotExistedException extends RuntimeException {
     public CommentNotExistedException(Long cafeId) {

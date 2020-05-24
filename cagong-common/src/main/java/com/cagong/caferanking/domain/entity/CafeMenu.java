@@ -14,15 +14,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
-@Entity
-@Data
+@Getter
 @Builder
-@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 @ToString(exclude = {"cafe"})
-public class CafeMenu {
+@Entity
+public class CafeMenu extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,18 +30,6 @@ public class CafeMenu {
     private String name;
 
     private Integer price;
-
-    @CreatedDate
-    private LocalDateTime createdAt;
-
-    @CreatedBy
-    private String createdBy;
-
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
-
-    @LastModifiedBy
-    private String updatedBy;
 
     // CafeMenu : Cafe = N : 1
     @JsonIgnore

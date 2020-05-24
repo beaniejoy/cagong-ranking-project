@@ -2,6 +2,7 @@ package com.cagong.caferanking.page;
 
 import com.cagong.caferanking.application.CafeService;
 import com.cagong.caferanking.application.ReviewService;
+import com.cagong.caferanking.error.SessionAssignedException;
 import com.cagong.caferanking.domain.network.response.CafeApiResponse;
 import com.cagong.caferanking.domain.network.response.SessionApiResponse;
 import com.cagong.caferanking.error.SessionNotAssignedException;
@@ -38,7 +39,7 @@ public class PageController {
     @GetMapping("/login")
     public String login(HttpServletRequest request) {
         if (request.getSession().getAttribute("member") != null) {
-            return "member/login_handle";
+            throw new SessionAssignedException();
         }
 
         return "member/login";
@@ -48,7 +49,7 @@ public class PageController {
     @GetMapping("/regst")
     public String register(HttpServletRequest request) {
         if (request.getSession().getAttribute("member") != null) {
-            return "member/login_handle";
+            throw new SessionAssignedException();
         }
 
         return "member/regst";

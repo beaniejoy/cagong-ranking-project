@@ -1,6 +1,6 @@
 package com.cagong.caferanking.interfaces.erroradvice;
 
-import com.cagong.caferanking.application.CommentNotExistedException;
+import com.cagong.caferanking.error.CommentNotExistedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 

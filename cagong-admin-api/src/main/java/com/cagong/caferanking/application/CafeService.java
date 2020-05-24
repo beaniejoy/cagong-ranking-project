@@ -34,7 +34,6 @@ public class CafeService {
         Cafe cafe = cafeRepositoy.findById(cafeId)
                 .orElseThrow(() -> new CafeNotFoundException(cafeId));
 
-        cafe.setName(name).setAddress(address);
 
         return cafeRepositoy.save(cafe);
     }

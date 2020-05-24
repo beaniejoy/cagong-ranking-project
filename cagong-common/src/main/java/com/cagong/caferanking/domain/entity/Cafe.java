@@ -14,15 +14,13 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-@Entity
-@Data
+@Getter
 @Builder
-@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 @ToString(exclude = {"cafeMenuList", "reviewList"})
-public class Cafe {
+@Entity
+public class Cafe extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,18 +38,6 @@ public class Cafe {
     private LocalTime opertimeEnd;
 
     private String phoneNumber;
-
-    @CreatedDate
-    private LocalDateTime createdAt;
-
-    @CreatedBy
-    private String createdBy;
-
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
-
-    @LastModifiedBy
-    private String updatedBy;
 
     // Cafe : CafeMenu = 1 : N
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cafe")
