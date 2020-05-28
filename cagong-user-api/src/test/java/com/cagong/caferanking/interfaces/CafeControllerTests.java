@@ -105,21 +105,6 @@ public class CafeControllerTests {
 
         cafeApiResponse.setCafeMenuList(cafeMenuApiResponseList);
 
-//        List<ReviewApiResponse> reviewApiResponseList = new ArrayList<>();
-//        reviewApiResponseList.add(ReviewApiResponse.builder()
-//                .id(1000L)
-//                .cafeName("스타벅스 1호점")
-//                .userName("beaniejoy")
-//                .mood(4.5)
-//                .light(3.5)
-//                .price(1.5)
-//                .taste(2.5)
-//                .comment("맛있다!")
-//                .build())
-//        ;
-//
-//        cafeApiResponse.setReviewList(reviewApiResponseList);
-
         cafeApiResponse.setScoreSet(ScoreSetApiResponse.builder()
                 .id(50L)
                 .cafeName("스타벅스 1호점")

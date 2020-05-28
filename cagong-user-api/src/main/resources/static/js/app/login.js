@@ -48,14 +48,17 @@ $(function () {
                 return;
             }
 
-            var params = "email=" + $("#email").val() +
-                    "&password=" + $("#password").val();
+            var data = {
+                email: $("#email").val(),
+                password: $("#password").val()
+            };
 
             $.ajax({
                 type: 'POST',
-                url: 'session',
-                data: params,
+                url: '/session',
                 dataType: 'text',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data),
                 success: function (data) {
                     var result = Number(data);
                     switch (result) {

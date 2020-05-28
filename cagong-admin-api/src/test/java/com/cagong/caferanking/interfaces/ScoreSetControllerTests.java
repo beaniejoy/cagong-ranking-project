@@ -1,6 +1,7 @@
 package com.cagong.caferanking.interfaces;
 
 import com.cagong.caferanking.application.ScoreSetService;
+import com.cagong.caferanking.domain.entity.Cafe;
 import com.cagong.caferanking.domain.entity.ScoreSet;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,8 +13,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.core.StringContains.containsString;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -30,7 +31,11 @@ class ScoreSetControllerTests {
     @Test
     public void getScoreSet() throws Exception {
         ScoreSet scoreSet = ScoreSet.builder()
-//                .cafeId(1L)
+                .cafe(Cafe.builder()
+                        .id(1L)
+                        .name("뚜이카페")
+                        .address("광진구")
+                        .build())
                 .light(4.5)
                 .mood(3.5)
                 .price(2.5)
@@ -40,9 +45,10 @@ class ScoreSetControllerTests {
         given(scoreSetService.getScoreSetByCafeId(1L)).willReturn(scoreSet);
 
         mvc.perform(get("/cafes/1/scoreset"))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(
-                        containsString("\"cafeId\":1")
+                        containsString("")
                 ))
                 .andExpect(content().string(
                         containsString("\"light\":4.5")

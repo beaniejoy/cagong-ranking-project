@@ -57,7 +57,7 @@ public class PageController {
 
     // Search Page
     @GetMapping("/cafes/search")
-    public String getCafeList(
+    public String search(
             HttpServletRequest request,
             Model model,
             @RequestParam("phrase") String phrase,
@@ -132,6 +132,7 @@ public class PageController {
 
         model.addAttribute("cafe", cafeService.getCafe(cafeId));
         model.addAttribute("member", memInfo);
+        // TODO 불필요한 요소 제거하기
         model.addAttribute("cafeId", cafeId);
 
         return "review/review-save";
@@ -152,6 +153,7 @@ public class PageController {
         }
 
         model.addAttribute("review", reviewService.getReview(cafeId, memInfo.getId()));
+        // TODO 불필요한 요소 제거하기
         model.addAttribute("member", memInfo);
         model.addAttribute("cafeId", cafeId);
 

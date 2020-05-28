@@ -51,16 +51,20 @@ $(function () {
 
         }
 
-        var params = "account=" + $("#account").val() +
-                    "&email=" + $("#email").val() +
-                    "&phoneNumber=" + $("#phone").val() +
-                    "&password=" + $("#password").val();
+
+        var data = {
+            account: $("#account").val(),
+            email: $("#email").val(),
+            phoneNumber: $("#phone").val(),
+            password: $("#password").val()
+        };
 
         $.ajax({
             type: 'POST',
-            url: 'users',
-            data: params,
+            url: '/users',
             dataType: 'text',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data),
             success: function (data) {
                 var result = Number(data);
                 switch (result) {

@@ -28,8 +28,6 @@ public class CafeService {
 
     private final CafeMenuService cafeMenuService;
 
-    private final ReviewService reviewService;
-
     private final ScoreSetService scoreSetService;
 
     public CafeApiResponse countAll() {
@@ -102,6 +100,7 @@ public class CafeService {
                 .map(cafeMenuService::response)
                 .collect(Collectors.toList());
         cafeApiResponse.setCafeMenuList(cafeMenuApiResponseList);
+
 
         // ScoreSet
         ScoreSet scoreSet = cafe.getScoreSet();
