@@ -6,7 +6,7 @@ build/
 !**/src/main/**
 !**/src/test/**
 **/src/main/resources/static/img/
-**/src/main/resources/google.yml
+**/src/main/resources/aws.yml
 
 ### STS ###
 .apt_generated
