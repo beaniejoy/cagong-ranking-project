@@ -7,6 +7,7 @@ build/
 !**/src/test/**
 **/src/main/resources/static/img/
 **/src/main/resources/aws.yml
+**/src/main/resources/dev.yml
 
 ### STS ###
 .apt_generated

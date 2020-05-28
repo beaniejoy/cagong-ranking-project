@@ -1,16 +1,3 @@
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/cafe?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
-    username: root
-    password: gks82465512
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: false
-  thymeleaf:
-    encoding: UTF-8
-    enabled: true
-    suffix: .html
 #spring:
 #  datasource:
 #    url: jdbc:h2:~/data/cagong
