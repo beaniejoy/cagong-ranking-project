@@ -1,13 +1,3 @@
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/cafe?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
-    username: root
-    password:
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: false
-
 #  datasource:
 #    url: jdbc:h2:~/data/cagong
 #  jpa:
