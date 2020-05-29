@@ -18,9 +18,13 @@ cache:
 script: "./gradlew clean build"
 
 before_deploy:
-  - zip -r cagong-ranking-project *
-  - mkdir -p deploy
-  - mv cagong-ranking-project.zip deploy/cagong-ranking-project.zip
+  - mkdir -p before-deploy/
+  - cp scripts/*.sh before-deploy/
+  - cp appspec.yml before-deploy/
+  - cp cagong-user-api/build/libs/*.jar before-deploy/ # 여기서 한 개의 모듈에 대한 jar 파일만 가능
+  - cd before-deploy && zip -r before-deploy *
+  - cd ../ && mkdir -p deploy
+  - mv before-deploy/before-deploy.zip deploy/cagong-ranking-project.zip
 
 deploy:
   - provider: s3
@@ -30,7 +34,7 @@ deploy:
     region: ap-northeast-2
     skip_cleanup: true
     acl: private
-    local_dir: deploy # before_deploy에서 생성한 디렉토리
+    local_dir: deploy # before_deploy 에서 생성한 디렉토리
     wait-until-deployed: true
 
   - provider: codedeploy
