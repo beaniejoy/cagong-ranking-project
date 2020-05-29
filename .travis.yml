@@ -18,7 +18,7 @@ cache:
 script: "./gradlew clean build"
 
 before_deploy:
-  - zip -r cagong-ranking-project
+  - zip -r cagong-ranking-project *
   - mkdir -p deploy
   - mv cagong-ranking-project.zip deploy/cagong-ranking-project.zip
 
