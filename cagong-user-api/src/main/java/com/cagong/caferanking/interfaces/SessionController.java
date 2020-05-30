@@ -6,6 +6,7 @@ import com.cagong.caferanking.domain.network.response.SessionApiResponse;
 import com.cagong.caferanking.domain.network.response.UserApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,7 @@ public class SessionController {
 
     @PostMapping("/session")
     public String create(HttpServletRequest request,
-                  SessionApiRequest resource) {
+                  @RequestBody SessionApiRequest resource) {
         HttpSession session = request.getSession();
         UserApiResponse userApiResponse = userService.authenticate(resource.getEmail(), resource.getPassword());
 

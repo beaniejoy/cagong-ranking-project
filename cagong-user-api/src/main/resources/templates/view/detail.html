@@ -5,9 +5,11 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{common/layout}">
 
-<section layout:fragment="content" th:object="${cafe}">
-    <div class="jumbotron" id="jumbo"
-         style="background-image:url('/img/cafe1.jpg');">
+<section layout:fragment="content"
+         th:object="${cafe}">
+<!--         th:with="imgFullPath='http://d2dzfaqwlhqkso.cloudfront.net/cagong-ranking-project/img/cafe-list/' + *{imgUrl}">-->
+    <div class="jumbotron" id="jumbo">
+<!--         th:styleappend="${imgFullPath} ? 'background-image:url(${imgFullPath});'">-->
         <h2 style="margin-bottom: 50px;" th:text="*{name}"></h2>
         <p class="lead"></p>
         <p></p>

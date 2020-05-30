@@ -25,7 +25,7 @@
                     <div class="col mb-4" th:each="cafe : ${cafes}">
                         <div class="card" th:object="${cafe}">
                             <a th:href="@{/cafes/{cafeId}/detail(cafeId=${cafe.id})}">
-                                <img th:src="*{imgUrl}" class="card-img-top" alt="alternative">
+                                <img th:src="@{http://d2dzfaqwlhqkso.cloudfront.net/cagong-ranking-project/img/cafe-list/{imgUrl}(imgUrl=*{imgUrl})}" class="card-img-top" alt="alternative">
                             </a>
                             <div class="card-body">
                                 <h5 class="card-title" th:text="*{name}"></h5>

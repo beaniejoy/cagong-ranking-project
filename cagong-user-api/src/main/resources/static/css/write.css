@@ -1,13 +1,12 @@
 @charset "utf-8";
 
-
 .star{
   display:inline-block;
   width: 30px;height: 60px;
   cursor: pointer;
 }
 .star_left{
-  background: url(/img/star.png) no-repeat 0 0;
+  background: url(http://d2dzfaqwlhqkso.cloudfront.net/cagong-ranking-project/img/css/star.png) no-repeat 0 0;
   background-size: 60px; 
   margin-right: -3px;
 }
@@ -17,5 +16,5 @@
   margin-left: -3px;
 }
 .star.on{
-  background-image: url(/img/star_on.png);
+  background-image: url(http://d2dzfaqwlhqkso.cloudfront.net/cagong-ranking-project/img/css/star_on.png);
 }

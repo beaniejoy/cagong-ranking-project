@@ -14,7 +14,7 @@ $(function() {
 							for (let i = 0; i < data.length; i++) {
 								let name = data[i].cafeName;
 								let value = data[i][rate];
-								let url = data[i].cafeImgUrl;
+								let url = 'http://d2dzfaqwlhqkso.cloudfront.net/cagong-ranking-project/img/cafe-list' + data[i].cafeImgUrl;
 								let linkName = "#link" + i;
 								let imgName = "#shop-img" + i;
 								let shopName = "#shop" + i;

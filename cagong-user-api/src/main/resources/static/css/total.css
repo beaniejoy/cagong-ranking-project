@@ -15,7 +15,7 @@ body, html {
 #activeBack:after {
 	box-shadow: rgba(0, 0, 0, 0.5);
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url('/img/back.jpg');
+		url('http://d2dzfaqwlhqkso.cloudfront.net/cagong-ranking-project/img/home.jpg');
 	top: 0;
 	left: 0;
 	position: absolute;
