@@ -25,8 +25,7 @@ project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이�
 
 ## 서비스 구조
 
-<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83763220-73c70100-a6b3-11ea-8efe-71538ba1991a.png
-" width="800" height="350"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83767358-842daa80-a6b8-11ea-80b6-0c3bfedf0dcc.png" width="800" height="350"></p>
 
 <br>
 
@@ -54,29 +53,21 @@ project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이�
 
 ## 🔖 API Documentation
 
-<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83755524-a7e8f480-a6a8-11ea-913f-9ee9a7210c3f.png
-" width="900" height="510"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83755524-a7e8f480-a6a8-11ea-913f-9ee9a7210c3f.png" width="900" height="510"></p>
 
-<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83755765-01512380-a6a9-11ea-9525-4b3b68fb297f.png
-" width="900" height="510"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83755765-01512380-a6a9-11ea-9525-4b3b68fb297f.png" width="900" height="510"></p>
 
-<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83755809-162db700-a6a9-11ea-9ad8-a22b6b7acc45.png
-" width="900" height="510"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83755809-162db700-a6a9-11ea-9ad8-a22b6b7acc45.png" width="900" height="510"></p>
 
-<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83755851-28a7f080-a6a9-11ea-8b74-6aad45b189db.png
-" width="900" height="510"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83755851-28a7f080-a6a9-11ea-8b74-6aad45b189db.png" width="900" height="510"></p>
 
-<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83755921-3b222a00-a6a9-11ea-9047-9c51f05ab88c.png
-" width="900" height="510"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83755921-3b222a00-a6a9-11ea-9047-9c51f05ab88c.png" width="900" height="510"></p>
 
-<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83755955-49704600-a6a9-11ea-8460-23d0a5ca24b4.png
-" width="900" height="510"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83755955-49704600-a6a9-11ea-8460-23d0a5ca24b4.png" width="900" height="510"></p>
 
-<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83756014-6147ca00-a6a9-11ea-97d2-f3394028b2cf.png
-" width="900" height="510"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83756014-6147ca00-a6a9-11ea-97d2-f3394028b2cf.png" width="900" height="510"></p>
 
-<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83756060-73c20380-a6a9-11ea-8010-acb6cc4b0a4c.png
-" width="900" height="510"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83756060-73c20380-a6a9-11ea-8010-acb6cc4b0a4c.png" width="900" height="510"></p>
 
 
 <br>
