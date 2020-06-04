@@ -11,15 +11,12 @@ project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이�
 
 ## 🔖 Stack
 
-<p align="center"><img src="https://user-images.githubusercontent.com/41675375/82345945-d15f1a80-9a30-11ea-92a6-a3b39b3e85f8.png" width="250" height="320"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83743927-5df71300-a696-11ea-99ae-156c3fcb04e3.png" width="330" height="330"></p>
 
 - Spring Boot: `2.2.6` (Java 8)
 - Test: `JUnit4`
 - Build: `Gradle`
-  ```
-  ./gradlew clean build
-  ```
-- DB: `MariaDB`(AWS RDS)
+- DB: `MySQL`(Dev), `MariaDB`(AWS RDS)
 - Front : `thymeleaf`
 - IDE: `IntelliJ IDEA`
 - CI/CD: `Travis CI`, `CodeDeploy`(AWS)
