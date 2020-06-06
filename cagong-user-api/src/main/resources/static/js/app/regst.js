@@ -69,21 +69,45 @@ $(function () {
                 var result = Number(data);
                 switch (result) {
                     case 0:
-                        alert("성공적으로 회원가입이 되었습니다.");
-                        location.href = "/login";
+                        Swal.fire({
+                            title: 'Registration Success!',
+                            text: '성공적으로 회원가입이 되었습니다.',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                            onAfterClose: () => {
+                                window.location.href = "/login";
+                            }
+                        });
                         break;
                     case 1:
-                        alert("이전에 등록된 이메일이 존재합니다.");
-                        $("#email").addClass("is-invalid");
-                        $("#emailMessage").html("<span class='text-danger'>이전에 등록된 이메일이 존재합니다.</span>");
+                        Swal.fire({
+                            title: 'Registration Fail!',
+                            text: '이전에 등록된 이메일이 존재합니다.',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                            onAfterClose: () => {
+                                $("#email").addClass("is-invalid");
+                                $("#emailMessage").html("<span class='text-danger'>이전에 등록된 이메일이 존재합니다.</span>");
+                            }
+                        });
                         break;
                     default:
-                        alert("회원가입에 오류가 발생했습니다. 잠시 후 다시 진행해주세요.");
+                        Swal.fire({
+                            title: 'Registration Process Error!',
+                            text: '회원가입에 오류가 발생했습니다. 잠시 후 다시 진행해주세요.',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                        });
                         break;
                 }
             },
             error: function(error) {
-                alert("오류 발생 " + error);
+                Swal.fire({
+                    title: 'Registration Process Error!',
+                    text: '오류 발생' + error,
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                });
             }
         })
     });

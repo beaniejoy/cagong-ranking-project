@@ -41,8 +41,11 @@ body, html {
 	text-align: center;
 }
 
+.dohyeon {
+    font-family: 'Do Hyeon', sans-serif;
+}
+
 #mainTitle, #showRank, .title h4, .title-rating h4 span, #jumbo h2 {
-	font-family: 'Do Hyeon', sans-serif;
 	color: white;
 }
 
@@ -115,5 +118,4 @@ main .description h3 {
 	background-position: center bottom;
 	background-attachment: fixed;
 	background-size: cover;
-	width:
 }

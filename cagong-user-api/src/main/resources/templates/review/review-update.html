@@ -142,10 +142,10 @@
                         <label for="comment">한줄 평가</label>
                         <textarea class="form-control" id="comment" rows="3" th:text="${review.comment}"></textarea>
                     </div>
-                    <input type="hidden" id="mood-rate" th:value="${review.mood} * 2 - 1"/>
-                    <input type="hidden" id="light-rate" th:value="${review.light} * 2 - 1"/>
-                    <input type="hidden" id="price-rate" th:value="${review.price} * 2 - 1"/>
-                    <input type="hidden" id="taste-rate" th:value="${review.taste} * 2 - 1"/>
+                    <input type="hidden" id="mood-rate" th:value="${review.mood}"/>
+                    <input type="hidden" id="light-rate" th:value="${review.light}"/>
+                    <input type="hidden" id="price-rate" th:value="${review.price}"/>
+                    <input type="hidden" id="taste-rate" th:value="${review.taste}"/>
                     <input type="hidden" id="review-id" th:value="${review.id}"/>
                     <input type="hidden" id="user-id" th:value="${member.id}"/>
                     <input type="hidden" id="cafe-id" th:value="${cafeId}"/>

@@ -2,7 +2,9 @@ package com.cagong.caferanking.application;
 
 import com.cagong.caferanking.domain.entity.CafeMenu;
 import com.cagong.caferanking.domain.entity.CafeMenuRepository;
+import com.cagong.caferanking.domain.entity.CafeRepository;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,10 +12,12 @@ import java.util.List;
 
 @Service
 @Transactional
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CafeMenuService {
 
-    private CafeMenuRepository cafeMenuRepository;
+    private final CafeMenuRepository cafeMenuRepository;
+
+    private final CafeRepository cafeRepository;
 
     public List<CafeMenu> getCafeMenus(Long cafeId) {
         return cafeMenuRepository.findAllByCafeId(cafeId);

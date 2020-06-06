@@ -4,7 +4,7 @@
 <header th:fragment="header-frag">
     <!-- navbar start-->
     <nav class="navbar navbar-expand-lg navbar-dark" id="top-navbar">
-        <a class="navbar-brand text-bold" href="/home">카공도르</a>
+        <a class="navbar-brand text-bold dohyeon" href="/home">카공도르</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarTogglerDemo02"
@@ -22,7 +22,7 @@
             </ul>
             <ul class="navbar-nav justify-content-end">
                 <li class="nav-item" th:if="${session.member == null}">
-                    <a class="nav-link" href="/regst">회원가입 </a>
+                    <a class="nav-link" href="/regst">회원가입</a>
                 </li>
                 <li class="nav-item" th:if="${session.member == null}">
                     <a class="nav-link" href="/login">로그인</a>
@@ -32,13 +32,12 @@
                     <a class="nav-link text-bold" th:text="${session.member.account}" href="#"></a>
                 </li>
                 <li class="nav-item" th:if="${session.member != null}">
-                    님 환영합니다.
+                    <span class="navbar-text">님 환영합니다.</span>
                 </li>
                 <li class="nav-item" th:if="${session.member != null}">
                     <a class="nav-link" href="/logout">로그아웃</a>
                 </li>
 
-                <!--                form 이 부분 경고 왜 나오는지 알아보자-->
                 <form class="form-inline my-2 my-lg-0" id="search-bar" method="get" action="/cafes/search">
                     <input class="form-control mr-sm-2" type="text"
                            placeholder="카페명을 입력해주세요" id="search" name="phrase"

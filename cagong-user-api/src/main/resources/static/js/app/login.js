@@ -63,24 +63,43 @@ $(function () {
                     var result = Number(data);
                     switch (result) {
                         case 0:
-                            alert("성공적으로 로그인이 되었습니다.");
-                            window.location.href = '/home';
+                            Swal.fire({
+                                title: 'Login Success!',
+                                text: '성공적으로 로그인이 되었습니다.',
+                                icon: 'success',
+                                confirmButtonText: 'OK',
+                                onAfterClose: () => {
+                                    window.location.href = '/home';
+                                }
+                            });
                             break;
                         case 1:
-                            alert("로그인 정보가 일치하지 않습니다.");
+                            Swal.fire({
+                                title: 'Wrong Member Info.',
+                                text: '로그인 정보가 일치하지 않습니다.',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
                             break;
                         default:
-                            alert("로그인에 오류가 발생했습니다. 잠시 후 다시 진행해주세요.");
+                            Swal.fire({
+                                title: 'Process Error!',
+                                text: '로그인에 오류가 발생했습니다. 잠시 후 다시 진행해주세요.',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
                             break;
                     }
                 },
                 error: function (error) {
-                    alert("오류 발생 " + error);
+                    Swal.fire({
+                        title: 'Server Error!',
+                        text: '오류 발생' + error,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
                 }
             })
         }
     );
-
-
-
 });
