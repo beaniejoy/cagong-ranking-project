@@ -6,77 +6,92 @@
       layout:decorate="~{common/layout}">
 
 <section layout:fragment="content">
-    <!-- breadcrumb start -->
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/home">Main</a></li>
-            <li class="breadcrumb-item active" aria-current="page">매장 평가</li>
-        </ol>
-    </nav>
-    <!-- breadcrumb end-->
 
     <!-- main start -->
-    <div class="container">
+    <div class="container" style="margin-top:40px;">
         <div class="row">
-            <div class="col-lg-12">
-                <h3><span th:text="${review.cafeName}"></span> 리뷰</h3>
+            <div class="col"></div>
+            <div class="col-6">
+                <h3 class="dohyeon">
+                    <span class="badge badge-warning" th:text="${review.cafeName}" style="color:white;"></span>
+                    <span> Review</span>
+                </h3>
                 <br>
                 <form>
                     <div class="form-group row">
-                        <label for="reviewer" class="col-sm-2 col-form-label">평가자</label>
-                        <div class="col-sm-10">
+                        <label for="reviewer" class="col-sm-4 col-form-label dohyeon">✍️ Reviewer</label>
+                        <div class="col-sm-8">
                             <input type="text" class="form-control" id="reviewer" readonly="readonly" th:value="${review.userName}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="shop" class="col-sm-2 col-form-label">평가매장</label>
-                        <div class="col-sm-10">
+                        <label for="shop" class="col-sm-4 col-form-label dohyeon">☕ Cafe</label>
+                        <div class="col-sm-8">
                             <input type="text" class="form-control" id="shop" readonly="readonly" th:value="${review.cafeName}">
                         </div>
                     </div>
                     <br>
 
-                    <h4>분위기</h4>
-                    <div class="star-box">
-                        <span class="mood" th:each="num : ${#numbers.sequence(1, 10)}">
-                            <span class="star star-mood" th:classappend="${num} % 2 == 1?
-                            (${num} <= ${review.mood} * 2? 'star_left on': star_left):
-                            (${num} <= ${review.mood} * 2? 'star_right on': star_right)"></span>
-                            <span> </span>
-                        </span>
+                    <div class="card score-card">
+                        <div class="card-body">
+                            <h4 class="dohyeon">분위기</h4>
+                            <div class="star-box">
+                                <span class="mood" th:each="num : ${#numbers.sequence(1, 10)}">
+                                    <span class="star star-mood" th:classappend="${num} % 2 == 1?
+                                    (${num} <= ${review.mood} * 2? 'star_left on': star_left):
+                                    (${num} <= ${review.mood} * 2? 'star_right on': star_right)"></span>
+                                    <span> </span>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <h4>조명</h4>
-                    <div class="star-box">
-                        <span class="light" th:each="num : ${#numbers.sequence(1, 10)}">
-                            <span class="star star-light" th:classappend="${num} % 2 == 1?
-                            (${num} <= ${review.light} * 2? 'star_left on': star_left):
-                            (${num} <= ${review.light} * 2? 'star_right on': star_right)"></span>
-                            <span> </span>
-                        </span>
+
+                    <div class="card score-card">
+                        <div class="card-body">
+                            <h4 class="dohyeon">조명</h4>
+                            <div class="star-box">
+                                <span class="light" th:each="num : ${#numbers.sequence(1, 10)}">
+                                    <span class="star star-light" th:classappend="${num} % 2 == 1?
+                                    (${num} <= ${review.light} * 2? 'star_left on': star_left):
+                                    (${num} <= ${review.light} * 2? 'star_right on': star_right)"></span>
+                                    <span> </span>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <h4>가격</h4>
-                    <div class="star-box">
-                        <span class="price" th:each="num : ${#numbers.sequence(1, 10)}">
-                            <span class="star star-price" th:classappend="${num} % 2 == 1?
-                            (${num} <= ${review.price} * 2? 'star_left on': star_left):
-                            (${num} <= ${review.price} * 2? 'star_right on': star_right)"></span>
-                            <span> </span>
-                        </span>
+
+                    <div class="card score-card">
+                        <div class="card-body">
+                            <h4 class="dohyeon">가격</h4>
+                            <div class="star-box">
+                                <span class="price" th:each="num : ${#numbers.sequence(1, 10)}">
+                                    <span class="star star-price" th:classappend="${num} % 2 == 1?
+                                    (${num} <= ${review.price} * 2? 'star_left on': star_left):
+                                    (${num} <= ${review.price} * 2? 'star_right on': star_right)"></span>
+                                    <span> </span>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <h4>맛</h4>
-                    <div class="star-box">
-                        <span class="taste" th:each="num : ${#numbers.sequence(1, 10)}">
-                            <span class="star star-taste" th:classappend="${num} % 2 == 1?
-                            (${num} <= ${review.taste} * 2? 'star_left on': star_left):
-                            (${num} <= ${review.taste} * 2? 'star_right on': star_right)"></span>
-                            <span> </span>
-                        </span>
+
+                    <div class="card score-card">
+                        <div class="card-body">
+                            <h4 class="dohyeon">맛</h4>
+                            <div class="star-box">
+                                <span class="taste" th:each="num : ${#numbers.sequence(1, 10)}">
+                                    <span class="star star-taste" th:classappend="${num} % 2 == 1?
+                                    (${num} <= ${review.taste} * 2? 'star_left on': star_left):
+                                    (${num} <= ${review.taste} * 2? 'star_right on': star_right)"></span>
+                                    <span> </span>
+                                </span>
+                            </div>
+                        </div>
                     </div>
 
                     <br>
 
                     <div>
-                        <label>추천 시간대</label>
+                        <label class="dohyeon">추천 시간대</label>
                         <div class='form-group row'>
                             <div class="col-5">
                                 <fieldset>
@@ -104,7 +119,7 @@
                                 </fieldset>
                             </div>
                             <div class="col">
-                                <label for="valueA">부터</label>
+                                <label for="valueA" class="dohyeon">부터</label>
                             </div>
                             <div class="col-5">
                                 <fieldset>
@@ -132,14 +147,14 @@
                                 </fieldset>
                             </div>
                             <div class="col">
-                                <label for="valueB">까지</label>
+                                <label for="valueB" class="dohyeon">까지</label>
                             </div>
                         </div>
                     </div>
                     <br>
 
                     <div class="form-group">
-                        <label for="comment">한줄 평가</label>
+                        <label for="comment" class="dohyeon">한줄 평가</label>
                         <textarea class="form-control" id="comment" rows="3" th:text="${review.comment}"></textarea>
                     </div>
                     <input type="hidden" id="mood-rate" th:value="${review.mood}"/>
@@ -153,12 +168,10 @@
                 <br>
                 <div class='text-right'>
                     <button type="button" class="btn btn-secondary btn-md" id="cancel">취소</button>
-                    <button type="button" class="btn btn-success btn-md" id="btn-update">수정 완료
-                    </button>
+                    <button type="button" class="btn btn-success btn-md" id="btn-update">수정 완료</button>
                 </div>
-
-
             </div>
+            <div class="col"></div>
         </div>
     </div>
     <!-- main end -->

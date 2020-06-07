@@ -9,16 +9,10 @@
 </head>
 <body>
 <form style="margin-bottom: 50px;">
-
     <div class="form-group" th:if="${comments}" th:each="comment : ${comments}">
-        <label th:text="${comment.account}"></label>
+        <span>😃 </span><label class="dohyeon" th:text="${comment.account}"></label>
         <textarea class="form-control" rows="3" readonly="readonly" th:text="${comment.content}"></textarea>
     </div>
-
-    <div th:if="!${comments}">
-        <h4>리뷰가 존재하지 않습니다.</h4>
-    </div>
-
 </form>
 
 <!-- Pagination-->

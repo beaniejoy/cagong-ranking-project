@@ -1,20 +1,27 @@
 @charset "utf-8";
 
+.score-card{
+margin-bottom:20px;
+}
+
 .star{
   display:inline-block;
   width: 30px;height: 60px;
   cursor: pointer;
 }
+
 .star_left{
   background: url(http://d2dzfaqwlhqkso.cloudfront.net/cagong-ranking-project/img/css/star.png) no-repeat 0 0;
   background-size: 60px; 
   margin-right: -3px;
 }
+
 .star_right{
   background: url(http://d2dzfaqwlhqkso.cloudfront.net/cagong-ranking-project/img/css/star.png) no-repeat -30px 0;
   background-size: 60px; 
   margin-left: -3px;
 }
+
 .star.on{
   background-image: url(http://d2dzfaqwlhqkso.cloudfront.net/cagong-ranking-project/img/css/star_on.png);
 }

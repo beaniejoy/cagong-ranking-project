@@ -19,25 +19,25 @@
             <div class="col"></div>
             <div class="col-6">
                 <div style="margin-bottom: 50px">
-                    <h4 class="dohyeon">Info.</h4>
+                    <h4 class="dohyeon">📝 Info.</h4>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <span style="width: 100px; display: inline-block; margin-right: 20px"><b>Address.</b></span>
+                            <span style="width: 100px; display: inline-block; margin-right: 20px"><b>📪 Address.</b></span>
                             <span th:text="*{address}"></span>
                         </li>
                         <li class="list-group-item">
-                            <span style="width: 100px; display: inline-block; margin-right: 20px"><b>Phone.</b></span>
+                            <span style="width: 100px; display: inline-block; margin-right: 20px"><b>📞 Phone.</b></span>
                             <span th:text="*{phoneNumber}"></span>
                         </li>
                         <li class="list-group-item">
-                            <span style="width: 100px; display: inline-block; margin-right: 20px"><b>Time.</b></span>
+                            <span style="width: 100px; display: inline-block; margin-right: 20px"><b>⌚ Time.</b></span>
                             <span th:text="*{opertimeStart}"></span> ~
                             <span th:text="*{opertimeEnd}"></span>
                         </li>
                     </ul>
                 </div>
                 <div style="margin-bottom: 50px">
-                    <h4 class="dohyeon">Menu</h4>
+                    <h4 class="dohyeon">☕ Menu</h4>
                     <ul class="list-group">
                         <li class="list-group-item" th:each="cafeMenu : *{cafeMenuList}">
                             <b><span style="width: 100px; display: inline-block; margin-right: 20px"
@@ -47,7 +47,7 @@
                     </ul>
                 </div>
                 <div style="margin-bottom: 50px">
-                    <h4 class="dohyeon">Score</h4>
+                    <h4 class="dohyeon">⭐ Score</h4>
                     <ul class="list-group" th:with="score = *{scoreSet}">
                         <li class="list-group-item">
                             <span style="width: 100px; display: inline-block; margin-right: 20px"><b>Mood</b></span>
@@ -67,7 +67,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="text-right">
+                <div class="text-right" style="margin-bottom:40px;">
                     <!--            TODO: 사용자의 상태에 따라 수정하기/평가하기로 나눌 것-->
                     <a class="btn btn-outline-success" th:if="*{isWrite}"
                        th:href="@{/cafes/{cafeId}/update(cafeId=${cafe.id})}">수정하기</a>

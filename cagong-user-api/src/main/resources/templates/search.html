@@ -6,20 +6,11 @@
       layout:decorate="~{common/layout}">
 
 <section layout:fragment="content">
-    <!-- breadcrumb start -->
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="home">Main</a></li>
-            <li class="breadcrumb-item active" aria-current="page">카페검색</li>
-        </ol>
-    </nav>
-    <!-- breadcrumb end-->
-
-    <!-- main_sg.js start -->
-    <div class="container">
+    <!-- main start -->
+    <div class="container" style="margin-top:40px; margin-bottom:30px;">
         <div class="row" id="search_row">
             <div class="col-lg-12">
-                <h3>Cafe List</h3>
+                <h3 class="dohyeon">Cafe List</h3>
                 <div class="row row-cols-1 row-cols-md-3">
 
                     <div class="col mb-4" th:each="cafe : ${cafes}">
@@ -68,7 +59,7 @@
             </div>
         </div>
     </div>
-    <!-- main_sg.js end -->
+    <!-- main end -->
 </section>
 
 </html>
