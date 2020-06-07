@@ -12,8 +12,7 @@ project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이�
 
 ## 🔖 Overview
 
-<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83969095-debd4580-a908-11ea-8618-ce6aee18dcb9.png
-" width="600" height="300"></p>
+<p><img src="https://user-images.githubusercontent.com/41675375/83969095-debd4580-a908-11ea-8618-ce6aee18dcb9.png" width="600" height="300"></p>
 
 <br>
 
