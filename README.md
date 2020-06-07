@@ -23,9 +23,12 @@ project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이�
 
 <br>
 
-## 서비스 구조
+## 🔖 서비스 및 CI/CD 구조
 
 <p align="center"><img src="https://user-images.githubusercontent.com/41675375/83767358-842daa80-a6b8-11ea-80b6-0c3bfedf0dcc.png" width="800" height="350"></p>
+
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83968631-7faa0180-a905-11ea-90ed-b1b3e9d75589.png" width="800" height="280"></p>
+
 
 <br>
 
@@ -35,21 +38,41 @@ project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이�
 
 <br>
 
-**main page**
-<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83753721-c0a3db00-a6a5-11ea-85db-8f03d8974c58.png" width="800" height="350"></p>
+**Main Page**
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83968654-b3852700-a905-11ea-9f6b-611f79a122cc.png" width="800" height="350"></p>
 
 <br>
 
-**login page**
-<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83754996-d914f500-a6a7-11ea-9b10-143a7982b134.png" width="800" height="350"></p>
+**Rank Page**
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83968685-dd3e4e00-a905-11ea-9168-abb341500b23.png" width="800" height="370"></p>
 
 <br>
 
-**member register page**
-<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83755092-019cef00-a6a8-11ea-85cd-2b7e0fac5fcb.png" width="800" height="450"></p>
+**Login Page**
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83968748-3f974e80-a906-11ea-9d47-b8177b48f6f5.png" width="800" height="350"></p>
 
+<br>
 
+**Member Registration Page**
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83968761-576ed280-a906-11ea-97a7-4f100448c4b9.png" width="800" height="450"></p>
 
+<br>
+
+**Search Page**
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83968781-7f5e3600-a906-11ea-8665-3c60fd549f77.png" width="800" height="350"></p>
+
+<br>
+
+**Detail Page**
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83968791-9bfa6e00-a906-11ea-983b-22a41122ee89.png" width="800" height="580"></p>
+
+<br>
+
+**Review Page**
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83968817-c0eee100-a906-11ea-8718-8af0b09d4431.png
+" width="800" height="600"></p>
+
+<br>
 
 ## 🔖 API Documentation
 
