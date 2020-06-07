@@ -3,9 +3,17 @@
 [![Build Status](https://travis-ci.org/hanbinleejoy/cagong-ranking-project.svg?branch=master)](https://travis-ci.org/hanbinleejoy/cagong-ranking-project)
 
 Cafe Ranking Service for people who study at cafe (spring boot)  
-project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이션을 개발 중에 있습니다.
+project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이션을 개발 중에 있습니다.  
 
-> improved version of 🔗[project-cafe-ranking](https://github.com/hanbinleejoy/project-cafe-ranking)
+> improved version of 🔗[project-cafe-ranking](https://github.com/hanbinleejoy/project-cafe-ranking)  
+> ✍🏻 개발 진행 중에 있습니다.
+
+<br>
+
+## 🔖 Overview
+
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83969095-debd4580-a908-11ea-8618-ce6aee18dcb9.png
+" width="600" height="300"></p>
 
 <br>
 
@@ -23,9 +31,11 @@ project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이�
 
 <br>
 
-## 🔖 서비스 및 CI/CD 구조
+## 🔖 서비스 & CI/CD 구조
 
 <p align="center"><img src="https://user-images.githubusercontent.com/41675375/83767358-842daa80-a6b8-11ea-80b6-0c3bfedf0dcc.png" width="800" height="350"></p>
+
+<br>
 
 <p align="center"><img src="https://user-images.githubusercontent.com/41675375/83968631-7faa0180-a905-11ea-90ed-b1b3e9d75589.png" width="800" height="280"></p>
 
@@ -33,8 +43,6 @@ project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이�
 <br>
 
 ## 🔖 Page
-
-> ✍🏻 작성 중에 있습니다.
 
 <br>
 
@@ -69,8 +77,7 @@ project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이�
 <br>
 
 **Review Page**
-<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83968817-c0eee100-a906-11ea-8718-8af0b09d4431.png
-" width="800" height="600"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/41675375/83968817-c0eee100-a906-11ea-8718-8af0b09d4431.png" width="800" height="600"></p>
 
 <br>
 
