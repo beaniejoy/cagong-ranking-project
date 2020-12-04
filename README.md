@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/hanbinleejoy/cagong-ranking-project.svg?branch=master)](https://travis-ci.org/hanbinleejoy/cagong-ranking-project)
 
 Cafe Ranking Service for people who study at cafe (spring boot)  
-project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이션을 개발 중에 있습니다.  
+project-cafe-ranking을 기초로 Spring Boot를 이용한 웹 어플리케이션 개발  
 
 > improved version of 🔗[project-cafe-ranking](https://github.com/hanbinleejoy/project-cafe-ranking)  
 > ✍🏻 개발 진행 중에 있습니다.
